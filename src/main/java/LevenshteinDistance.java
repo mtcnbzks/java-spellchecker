@@ -1,6 +1,22 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 public class LevenshteinDistance {
+
+   static ArrayList<String> dictionary = new ArrayList<>();
+
    public static void main(String[] args) {
-      System.out.println(levenshteinDistance("kitten", "sitting"));
+      dictionary = getWords();
+      String adobal = "ideel";
+      for (String word : dictionary) {
+         if (levenshteinDistance(word, adobal) <= 2) {
+            System.out.println(word);
+         }
+      }
    }
 
    static int levenshteinDistance(String word1, String word2) {
@@ -22,6 +38,18 @@ public class LevenshteinDistance {
          }
       }
       return matrix[lenWord1][lenWord2];
+   }
+
+   static ArrayList<String> getWords() {
+      try (BufferedReader bufferedReader = new BufferedReader(
+            new FileReader("src/main/resources/words_sorted.txt"))) {
+         return (ArrayList<String>) bufferedReader.lines().collect(Collectors.toList());
+      } catch (FileNotFoundException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+      return null;
    }
 
    static void printMatrix(int[][] matrix) {

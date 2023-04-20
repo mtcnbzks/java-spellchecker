@@ -1,7 +1,6 @@
 public class LevenshteinDistance {
    public static void main(String[] args) {
       System.out.println(levenshteinDistance("kitten", "sitting"));
-      System.out.println();
    }
 
    static int levenshteinDistance(String word1, String word2) {
@@ -22,8 +21,16 @@ public class LevenshteinDistance {
             matrix[i][j] = Math.min(matrix[i - 1][j] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j - 1] + cost));
          }
       }
-
       return matrix[lenWord1][lenWord2];
+   }
+
+   static void printMatrix(int[][] matrix) {
+      for (int i = 0; i < matrix.length; i++) {
+         for (int j = 0; j < matrix[i].length; j++) {
+            System.out.print(matrix[i][j] + " ");
+         }
+         System.out.println();
+      }
    }
 
 }

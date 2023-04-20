@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,24 +11,13 @@ public class Functions {
    public static void main(String[] args) {
       dictionary = getWords();
 
-      Functions bu = new Functions();
       BST<String> BST = new BST<>();
 
-//      bst.insert("ahmet");
-//      bst.insert("elif");
-//      bst.insert("elifnaz");
-//      bst.insert("mehmetcan");
-//      bst.insert("mehmetc");
-//      bst.inOrderTraversal();
-//      System.out.println();
+      for (String word : dictionary) {
+         BST.insert(word);
+      }
 
-       for (String word : dictionary) {
-           BST.insert(word);
-       }
-
-       System.out.println(BST.getClosestWords("tuval"));
-
-
+      System.out.println(BST.getClosestWords("mtcnb", 2));
 
    }
 

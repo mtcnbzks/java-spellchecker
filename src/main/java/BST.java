@@ -52,17 +52,20 @@ public class BST<T extends Comparable<T>> {
       }
    }
 
-   ArrayList<String> getClosestWords(String word) {
+   ArrayList<String> getClosestWords(String word, int k) {
       word = word.toLowerCase();
       ArrayList<String> closestWords = new ArrayList<>();
 
+      int count = 0;
+
       Node<T> current = root;
 
-      while (current != null) {
+      while (current != null && count < k) {
          if (functions.levenshteinDistance(word, (String) current.data) <= 2) {
             if (word.equals(current.data))
                continue;
             closestWords.add((String) current.data);
+            count++;
             current = current.left;
          } else {
             current = current.right;

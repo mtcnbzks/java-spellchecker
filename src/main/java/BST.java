@@ -55,6 +55,69 @@ public class BST<T extends Comparable<T>> {
       return null;
    }
 
+   boolean delete(T word) {
+      Node<T> current = root;
+      Node<T> parent = null;
+
+      // find target's Node
+      while (current != null && !current.word.equals(word)) {
+         parent = current;
+         if (functions.levenshteinDistance((String) word, (String) current.word) <= 2) {
+            current = current.left;
+         } else {
+            current = current.right;
+         }
+      }
+
+      // if target not found return false.
+      if (current == null) {
+         return false;
+      }
+
+      // Case 1: If node has no child, just delete it
+      if (current.left == null && current.right == null) {
+         if (current == root) {
+            root = null;
+         } else if (current == parent.left) {
+            parent.left = null;
+         } else {
+            parent.right = null;
+         }
+      }
+
+      // Case 2: If node has one child, replace the node with its child
+      else if (current.left == null || current.right == null) {
+         Node<T> child = current.left == null ? current.right : current.left;
+         if (current == root) {
+            root = child;
+         } else if (parent == current.left) {
+            parent.left = child;
+         } else {
+            parent.right = child;
+         }
+      }
+
+      // Case 3: If node has two children, replace the node's value with the
+      // successor's value
+      else {
+         Node<T> successor = findSuccessor(current);
+         current.word = successor.word;
+         delete(successor.word);
+      }
+      return true;
+
+   }
+
+   private Node<T> findSuccessor(Node<T> node) {
+      Node<T> current = node.right;
+
+      while (current.left != null) {
+         current = current.left;
+      }
+
+      return current;
+   }
+
    void inOrderTraversal() {
       inOrderTraversal(root);
    }

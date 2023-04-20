@@ -16,6 +16,7 @@ public class Functions {
       for (String word : dictionary) {
          BST.insert(word);
       }
+
       String a = BST.search("aktif").word;
       System.out.println(a);
       System.out.println(BST.getClosestWords("mtcnb", 2));

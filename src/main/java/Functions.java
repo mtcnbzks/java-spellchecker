@@ -5,21 +5,29 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class LevenshteinDistance {
+public class Functions {
 
    static ArrayList<String> dictionary = new ArrayList<>();
 
    public static void main(String[] args) {
+      Functions bu = new Functions();
       dictionary = getWords();
-      String adobal = "ideel";
-      for (String word : dictionary) {
-         if (levenshteinDistance(word, adobal) <= 2) {
-            System.out.println(word);
-         }
-      }
+      BST<String> bst = new BST<>();
+      System.out.println(bu.levenshteinDistance("elif", "mehmetcan"));
+
+      bst.insert("ahmet");
+      bst.insert("elif");
+      bst.insert("elifnaz");
+      bst.insert("mehmetcan");
+      bst.insert("mehmetc");
+      bst.inOrderTraversal();
+      System.out.println();
+
+      System.out.println(bst.getClosestWords("elifnur"));
+
    }
 
-   static int levenshteinDistance(String word1, String word2) {
+   public int levenshteinDistance(String word1, String word2) {
       int lenWord1 = word1.length(), lenWord2 = word2.length();
       int[][] matrix = new int[lenWord1 + 1][lenWord2 + 1];
 

@@ -1,6 +1,7 @@
 public class LevenshteinDistance {
    public static void main(String[] args) {
       System.out.println(levenshteinDistance("kitten", "sitting"));
+      System.out.println();
    }
 
    static int levenshteinDistance(String word1, String word2) {

@@ -10,20 +10,26 @@ public class Functions {
    static ArrayList<String> dictionary = new ArrayList<>();
 
    public static void main(String[] args) {
-      Functions bu = new Functions();
       dictionary = getWords();
-      BST<String> bst = new BST<>();
-      System.out.println(bu.levenshteinDistance("elif", "mehmetcan"));
 
-      bst.insert("ahmet");
-      bst.insert("elif");
-      bst.insert("elifnaz");
-      bst.insert("mehmetcan");
-      bst.insert("mehmetc");
-      bst.inOrderTraversal();
-      System.out.println();
+      Functions bu = new Functions();
+      BST<String> BST = new BST<>();
 
-      System.out.println(bst.getClosestWords("elifnur"));
+//      bst.insert("ahmet");
+//      bst.insert("elif");
+//      bst.insert("elifnaz");
+//      bst.insert("mehmetcan");
+//      bst.insert("mehmetc");
+//      bst.inOrderTraversal();
+//      System.out.println();
+
+       for (String word : dictionary) {
+           BST.insert(word);
+       }
+
+       System.out.println(BST.getClosestWords("tuval"));
+
+
 
    }
 
@@ -50,10 +56,8 @@ public class Functions {
 
    static ArrayList<String> getWords() {
       try (BufferedReader bufferedReader = new BufferedReader(
-            new FileReader("src/main/resources/words_sorted.txt"))) {
+            new FileReader("src/main/resources/unsorted_words.txt"))) {
          return (ArrayList<String>) bufferedReader.lines().collect(Collectors.toList());
-      } catch (FileNotFoundException e) {
-         e.printStackTrace();
       } catch (IOException e) {
          e.printStackTrace();
       }
@@ -61,9 +65,9 @@ public class Functions {
    }
 
    static void printMatrix(int[][] matrix) {
-      for (int i = 0; i < matrix.length; i++) {
-         for (int j = 0; j < matrix[i].length; j++) {
-            System.out.print(matrix[i][j] + " ");
+      for (int[] rows : matrix) {
+         for (int columns : rows) {
+            System.out.print(columns + " ");
          }
          System.out.println();
       }

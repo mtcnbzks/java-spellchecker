@@ -15,7 +15,7 @@ public class BST<T extends Comparable<T>> {
    Node<T> root;
 
    void insert(T word) {
-      Node<T> newNode = new Node<T>(word);
+      Node<T> newNode = new Node<>(word);
 
       if (root == null) {
          root = newNode;
@@ -53,6 +53,7 @@ public class BST<T extends Comparable<T>> {
    }
 
    ArrayList<String> getClosestWords(String word) {
+      word = word.toLowerCase();
       ArrayList<String> closestWords = new ArrayList<>();
 
       Node<T> current = root;

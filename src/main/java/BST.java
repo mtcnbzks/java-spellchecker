@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class BST<T extends Comparable<T>> {
    Functions functions = new Functions();
 
-   static class Node<T> {
-      T data;
+   public static class Node<T> {
+      T word;
       Node<T> left, right;
 
       Node(T data) {
-         this.data = data;
+         this.word = data;
       }
    }
 
@@ -24,7 +24,7 @@ public class BST<T extends Comparable<T>> {
 
       Node<T> current = root;
       while (true) {
-         if (functions.levenshteinDistance((String) word, (String) current.data) <= 2) {
+         if (functions.levenshteinDistance((String) word, (String) current.word) <= 2) {
             if (current.left == null) {
                current.left = newNode;
                return;
@@ -40,6 +40,21 @@ public class BST<T extends Comparable<T>> {
       }
    }
 
+   Node<T> search(T word) {
+      Node<T> current = root;
+
+      while (current != null) {
+         if (current.word.equals((String) word)) {
+            return current;
+         } else if (functions.levenshteinDistance((String) word, (String) current.word) <= 2) {
+            current = current.left;
+         } else {
+            current = current.right;
+         }
+      }
+      return null;
+   }
+
    void inOrderTraversal() {
       inOrderTraversal(root);
    }
@@ -47,7 +62,7 @@ public class BST<T extends Comparable<T>> {
    private void inOrderTraversal(Node<T> node) {
       if (node != null) {
          inOrderTraversal(node.left);
-         System.out.print(node.data + " ");
+         System.out.print(node.word + " ");
          inOrderTraversal(node.right);
       }
    }
@@ -61,10 +76,10 @@ public class BST<T extends Comparable<T>> {
       Node<T> current = root;
 
       while (current != null && count < k) {
-         if (functions.levenshteinDistance(word, (String) current.data) <= 2) {
-            if (word.equals(current.data))
+         if (functions.levenshteinDistance(word, (String) current.word) <= 2) {
+            if (word.equals(current.word))
                continue;
-            closestWords.add((String) current.data);
+            closestWords.add((String) current.word);
             count++;
             current = current.left;
          } else {

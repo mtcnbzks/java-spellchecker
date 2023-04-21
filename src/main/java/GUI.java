@@ -208,7 +208,7 @@ public class GUI extends javax.swing.JFrame {
 	}// GEN-LAST:event_cleanInputAreaButtonActionPerformed
 
 	private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
-		String inputAreaText = inputTextArea.getText().toLowerCase();
+		String inputAreaText = inputTextArea.getText().toLowerCase().trim();
 
 		words = Arrays.asList(inputAreaText.split("[^\\p{L}\\d]+"));
 

@@ -1,6 +1,4 @@
 
-package com.mycompany.projebura;
-
 public class GUI extends javax.swing.JFrame {
 
     public GUI() {
@@ -8,7 +6,8 @@ public class GUI extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         kGradientPanel = new keeptoo.KGradientPanel();
@@ -72,81 +71,100 @@ public class GUI extends javax.swing.JFrame {
         javax.swing.GroupLayout opaquePanelLayout = new javax.swing.GroupLayout(opaquePanel);
         opaquePanel.setLayout(opaquePanelLayout);
         opaquePanelLayout.setHorizontalGroup(
-            opaquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 189, Short.MAX_VALUE)
-        );
+                opaquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 189, Short.MAX_VALUE));
         opaquePanelLayout.setVerticalGroup(
-            opaquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+                opaquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE));
 
         javax.swing.GroupLayout kGradientPanelLayout = new javax.swing.GroupLayout(kGradientPanel);
         kGradientPanel.setLayout(kGradientPanelLayout);
         kGradientPanelLayout.setHorizontalGroup(
-            kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanelLayout.createSequentialGroup()
-                .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanelLayout.createSequentialGroup()
-                        .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(kGradientPanelLayout.createSequentialGroup()
-                                .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(kGradientPanelLayout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(opaquePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanelLayout.createSequentialGroup()
-                                        .addGap(39, 39, 39)
-                                        .addComponent(showButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(kGradientPanelLayout.createSequentialGroup()
-                                .addComponent(cleanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
+                kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                .addGroup(kGradientPanelLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanelLayout
+                                                .createSequentialGroup()
+                                                .addGroup(kGradientPanelLayout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                                                .addGroup(kGradientPanelLayout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addGroup(kGradientPanelLayout
+                                                                                .createSequentialGroup()
+                                                                                .addContainerGap()
+                                                                                .addComponent(opaquePanel,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(
+                                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                                kGradientPanelLayout
+                                                                                        .createSequentialGroup()
+                                                                                        .addGap(39, 39, 39)
+                                                                                        .addComponent(showButton,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                                114,
+                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                                        .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                                                .addComponent(cleanButton,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 114,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(40, 40, 40)))
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(25, Short.MAX_VALUE)));
         kGradientPanelLayout.setVerticalGroup(
-            kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(25, Short.MAX_VALUE))
-                    .addGroup(kGradientPanelLayout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(showButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(opaquePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cleanButton)
-                        .addGap(52, 52, 52))))
-        );
+                kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(kGradientPanelLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addContainerGap(25, Short.MAX_VALUE))
+                                        .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                                .addGap(52, 52, 52)
+                                                .addComponent(showButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(opaquePanel, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cleanButton)
+                                                .addGap(52, 52, 52)))));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(kGradientPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(kGradientPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cleanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanButtonActionPerformed
+    private void cleanButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cleanButtonActionPerformed
         Main_Text_Area.setText("");
-    }//GEN-LAST:event_cleanButtonActionPerformed
+    }// GEN-LAST:event_cleanButtonActionPerformed
 
-    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
+    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
         Document_Text_Area.setText(Main_Text_Area.getText());
-    }//GEN-LAST:event_showButtonActionPerformed
+    }// GEN-LAST:event_showButtonActionPerformed
 
     public static void main(String args[]) {
 

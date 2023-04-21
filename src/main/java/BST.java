@@ -44,7 +44,7 @@ public class BST<T extends Comparable<T>> {
       Node<T> current = root;
 
       while (current != null) {
-         if (current.word.equals((String) word)) {
+         if (current.word.equals(word)) {
             return current;
          } else if (functions.levenshteinDistance((String) word, (String) current.word) <= 2) {
             current = current.left;
@@ -152,6 +152,10 @@ public class BST<T extends Comparable<T>> {
 
       return closestWords;
 
+   }
+
+   String getClosestWord(String word) {
+      return getClosestWords(word, 1).get(0);
    }
 
 }

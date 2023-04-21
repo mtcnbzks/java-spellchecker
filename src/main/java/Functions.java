@@ -6,23 +6,6 @@ import java.util.stream.Collectors;
 
 public class Functions {
 
-   static ArrayList<String> dictionary = new ArrayList<>();
-
-   public static void main(String[] args) {
-      dictionary = getWords();
-
-      BST<String> BST = new BST<>();
-
-      for (String word : dictionary) {
-         BST.insert(word);
-      }
-
-      String a = BST.search("aktif").word;
-      System.out.println(a);
-      System.out.println(BST.getClosestWords("mtcnb", 2));
-
-   }
-
    public int levenshteinDistance(String word1, String word2) {
       int lenWord1 = word1.length(), lenWord2 = word2.length();
       int[][] matrix = new int[lenWord1 + 1][lenWord2 + 1];
@@ -44,7 +27,7 @@ public class Functions {
       return matrix[lenWord1][lenWord2];
    }
 
-   static ArrayList<String> getWords() {
+   ArrayList<String> getWords() {
       try (BufferedReader bufferedReader = new BufferedReader(
             new FileReader("src/main/resources/unsorted_words.txt"))) {
          return (ArrayList<String>) bufferedReader.lines().collect(Collectors.toList());

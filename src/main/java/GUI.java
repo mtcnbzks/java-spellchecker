@@ -1,48 +1,22 @@
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-
 
 public class GUI extends javax.swing.JFrame {
 
-    Functions functions = new Functions();
-
-    ArrayList<String> words = functions.getWords();
-    BST<String> dictionaryBST = new BST<>();
-
     public GUI() {
         initComponents();
-        setResizable(false);
-
-        for (String word : words) {
-            dictionaryBST.insert(word);
-        }
-
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         kGradientPanel = new keeptoo.KGradientPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        inputTextArea = new javax.swing.JTextArea();
-        jPanel4 = new javax.swing.JPanel();
+        Main_Text_Area = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        outputTextArea = new javax.swing.JTextArea();
+        Document_Text_Area = new javax.swing.JTextArea();
         showButton = new javax.swing.JButton();
-        cleanInputAreaButton = new javax.swing.JButton();
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 259, Short.MAX_VALUE));
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE));
+        cleanButton = new javax.swing.JButton();
+        opaquePanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SPELL CHECK");
@@ -62,71 +36,14 @@ public class GUI extends javax.swing.JFrame {
         Main_Text_Area.setRows(5);
         jScrollPane1.setViewportView(Main_Text_Area);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 51));
-        jPanel3.setPreferredSize(new java.awt.Dimension(658, 230));
-
-        inputTextArea.setColumns(20);
-        inputTextArea.setLineWrap(true);
-        inputTextArea.setRows(5);
-        jScrollPane1.setViewportView(inputTextArea);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
-                                .addContainerGap()));
-        jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                                .addContainerGap()));
-
-        jSplitPane1.setTopComponent(jPanel3);
-
-        jPanel4.setBackground(new java.awt.Color(204, 255, 102));
-
-        outputTextArea.setEditable(false);
-        outputTextArea.setBackground(new java.awt.Color(255, 255, 255));
-        outputTextArea.setColumns(20);
-        outputTextArea.setLineWrap(true);
-        outputTextArea.setRows(5);
-        jScrollPane2.setViewportView(outputTextArea);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
-                                .addContainerGap()));
-        jPanel4Layout.setVerticalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                                .addContainerGap()));
-
-        jSplitPane1.setRightComponent(jPanel4);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
-                                .addContainerGap()));
-        jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-                                .addContainerGap()));
+        Document_Text_Area.setEditable(false);
+        Document_Text_Area.setBackground(new java.awt.Color(255, 255, 255));
+        Document_Text_Area.setColumns(20);
+        Document_Text_Area.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
+        Document_Text_Area.setForeground(new java.awt.Color(0, 102, 51));
+        Document_Text_Area.setLineWrap(true);
+        Document_Text_Area.setRows(5);
+        jScrollPane2.setViewportView(Document_Text_Area);
 
         showButton.setBackground(new java.awt.Color(0, 153, 51));
         showButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -138,96 +55,98 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        cleanInputAreaButton.setText("CLEAN");
-        cleanInputAreaButton.addActionListener(new java.awt.event.ActionListener() {
+        cleanButton.setBackground(new java.awt.Color(153, 0, 0));
+        cleanButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        cleanButton.setForeground(new java.awt.Color(255, 255, 255));
+        cleanButton.setText("CLEAN");
+        cleanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cleanInputAreaButtonActionPerformed(evt);
+                cleanButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-                mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(showButton)
-                                        .addComponent(cleanInputAreaButton))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41,
-                                        Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)));
-        mainPanelLayout.setVerticalGroup(
-                mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(mainPanelLayout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(mainPanelLayout.createSequentialGroup()
-                                                .addGap(89, 89, 89)
-                                                .addComponent(cleanInputAreaButton,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 59,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(62, 62, 62)
-                                                .addComponent(showButton)))
-                                .addContainerGap(19, Short.MAX_VALUE)));
+        opaquePanel.setOpaque(false);
+
+        javax.swing.GroupLayout opaquePanelLayout = new javax.swing.GroupLayout(opaquePanel);
+        opaquePanel.setLayout(opaquePanelLayout);
+        opaquePanelLayout.setHorizontalGroup(
+            opaquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 189, Short.MAX_VALUE)
+        );
+        opaquePanelLayout.setVerticalGroup(
+            opaquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout kGradientPanelLayout = new javax.swing.GroupLayout(kGradientPanel);
+        kGradientPanel.setLayout(kGradientPanelLayout);
+        kGradientPanelLayout.setHorizontalGroup(
+            kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanelLayout.createSequentialGroup()
+                .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanelLayout.createSequentialGroup()
+                        .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(opaquePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanelLayout.createSequentialGroup()
+                                        .addGap(39, 39, 39)
+                                        .addComponent(showButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                .addComponent(cleanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        kGradientPanelLayout.setVerticalGroup(
+            kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(25, Short.MAX_VALUE))
+                    .addGroup(kGradientPanelLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(showButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(opaquePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cleanButton)
+                        .addGap(52, 52, 52))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(kGradientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cleanInputAreaButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cleanInputAreaButtonActionPerformed
-        inputTextArea.setText("");
-    }// GEN-LAST:event_cleanInputAreaButtonActionPerformed
+    private void cleanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanButtonActionPerformed
+        Main_Text_Area.setText("");
+    }//GEN-LAST:event_cleanButtonActionPerformed
 
-    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
-        String inputAreaText = inputTextArea.getText();
-
-        String regex = "\\w+";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(inputAreaText);
-
-        while (matcher.find()) {
-            String word = matcher.group();
-            String closestWord = dictionaryBST.getClosestWord(word);
-            outputTextArea.append(closestWord + " ");
-        }
-
-    }// GEN-LAST:event_showButtonActionPerformed
+    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
+        Document_Text_Area.setText(Main_Text_Area.getText());
+    }//GEN-LAST:event_showButtonActionPerformed
 
     public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        // </editor-fold>
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -239,18 +158,13 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cleanInputAreaButton;
-    private javax.swing.JTextArea inputTextArea;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JTextArea Document_Text_Area;
+    private javax.swing.JTextArea Main_Text_Area;
+    private javax.swing.JButton cleanButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSplitPane jSplitPane1;
-    private keeptoo.KGradientPanel mainPanel;
-    private javax.swing.JTextArea outputTextArea;
+    private keeptoo.KGradientPanel kGradientPanel;
+    private javax.swing.JPanel opaquePanel;
     private javax.swing.JButton showButton;
     // End of variables declaration//GEN-END:variables
-    
 }

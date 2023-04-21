@@ -169,4 +169,5 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel opaquePanel;
     private javax.swing.JButton showButton;
     // End of variables declaration//GEN-END:variables
+    
 }

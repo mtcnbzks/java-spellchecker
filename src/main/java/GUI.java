@@ -1,4 +1,6 @@
 
+package com.mycompany.projebura;
+
 public class GUI extends javax.swing.JFrame {
 
     public GUI() {

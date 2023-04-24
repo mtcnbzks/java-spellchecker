@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 public class Functions {
 
    public int levenshteinDistance(String word1, String word2) {
+      if (word1.toLowerCase().equals(word2.toLowerCase())) {
+         return 0;
+      }
+
       int lenWord1 = word1.length(), lenWord2 = word2.length();
       int[][] matrix = new int[lenWord1 + 1][lenWord2 + 1];
 

@@ -41,6 +41,10 @@ public class Functions {
       return null;
    }
 
+   boolean isWordInDictionary(String word) {
+      return getWords().contains(word);
+   }
+
    static void printMatrix(int[][] matrix) {
       for (int[] rows : matrix) {
          for (int columns : rows) {

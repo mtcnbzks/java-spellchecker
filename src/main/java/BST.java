@@ -24,16 +24,17 @@ public class BST<T extends Comparable<T>> {
 
       Node<T> current = root;
       while (true) {
-         if (functions.levenshteinDistance((String) word, (String) current.word) <= 2) {
+         int distance = functions.levenshteinDistance(word.toString(), current.word.toString());
+         if (distance <= 2) {
             if (current.left == null) {
                current.left = newNode;
-               return;
+               break;
             }
             current = current.left;
          } else {
             if (current.right == null) {
                current.right = newNode;
-               return;
+               break;
             }
             current = current.right;
          }

@@ -6,8 +6,8 @@ public class SpellChecker {
    public static void main(String[] args) {
       SpellChecker sp = new SpellChecker();
 
-      String selectedText = "kal";
-      int k = 5;
+      String selectedText = "kalem";
+      int k = 10;
 
       BST<String> closestWords = sp.getClosestWords(selectedText, k);
       closestWords.inOrderTraversal();
@@ -15,7 +15,7 @@ public class SpellChecker {
    }
 
    public BST<String> getClosestWords(String word) {
-      String filePath = "src/main/resources/ortak_kelimeler.txt";
+      String filePath = "src/main/resources/tr_dict.txt";
 
       BST<String> closestWordsBST = new BST<>();
       try (BufferedReader bufferedReader = new BufferedReader(
@@ -34,7 +34,7 @@ public class SpellChecker {
    }
 
    public BST<String> getClosestWords(String word, int k) {
-      String filePath = "src/main/resources/ortak_kelimeler.txt";
+      String filePath = "src/main/resources/tr_dict.txt";
 
       int count = 0;
       BST<String> closestWordsBST = new BST<>();
@@ -57,19 +57,7 @@ public class SpellChecker {
    }
 
    String getClosestWord(BST<String> closestWordsBST, String word) {
-      BST.Node<String> current = closestWordsBST.root;
-      String closestWord = current.word;
-
-      while (current != null) {
-         int distance = levenshteinDistance(word, current.word);
-         int closestDistance = levenshteinDistance(word, closestWord);
-
-         if (distance < closestDistance) {
-            closestWord = current.word;
-         }
-         current = current.left;
-      }
-      return closestWord;
+      return closestWordsBST.root.word;
    }
 
    public int levenshteinDistance(String word1, String word2) {

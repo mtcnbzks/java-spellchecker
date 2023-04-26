@@ -135,6 +135,20 @@ public class BST<T> {
       }
    }
 
+   StringBuilder inOrderTraversalToString() {
+      StringBuilder sb = new StringBuilder();
+      inOrderTraversalToString(root, sb);
+      return sb;
+   }
+
+   private void inOrderTraversalToString(Node<T> node, StringBuilder sb) {
+      if (node != null) {
+         inOrderTraversalToString(node.left, sb);
+         sb.append(node.word).append(" ");
+         inOrderTraversalToString(node.right, sb);
+      }
+   }
+
    Node<T> findMin() {
       Node<T> current = root;
       while (current.left != null) {

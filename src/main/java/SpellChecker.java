@@ -6,33 +6,13 @@ import java.util.List;
 
 public class SpellChecker {
    public static void main(String[] args) {
-      String selectedText = "kale";
-
       SpellChecker sp = new SpellChecker();
 
-      BST<String> halilburClosestWords = sp.getClosestWords(selectedText);
-      halilburClosestWords.inOrderTraversal();
+      String selectedText = "kal";
+      int k = 5;
 
-      // BST<String> dictionaryBST = sp.getWordsToBST();
-
-      // int k = 10;
-      // System.out.println("Selected text: " + selectedText);
-
-      // BST<String> closestWords = sp.getClosestWords(dictionaryBST, selectedText,
-      // k);
-      // closestWords.inOrderTraversal();
-      // System.out.println();
-      // System.out.println("en yakin kelime: " + sp.getClosestWord(closestWords,
-      // selectedText));
-
-      System.out.println();
-      // for (String word : getWordsToList()) {
-      // int distance = sp.levenshteinDistance(selectedText, word);
-
-      // if (distance > 0 && distance < 3) {
-      // System.out.println(word);
-      // }
-      // }
+      BST<String> closestWords = sp.getClosestWords(selectedText, k);
+      closestWords.inOrderTraversal();
 
    }
 
@@ -117,20 +97,5 @@ public class SpellChecker {
          }
       }
       return matrix[lenWord1][lenWord2];
-   }
-
-   static List<String> getWordsToList() {
-      List<String> dictionaryList = new ArrayList<>();
-      try (BufferedReader bufferedReader = new BufferedReader(
-            new FileReader("src/main/resources/unsorted_words.txt"))) {
-         String line;
-         while ((line = bufferedReader.readLine()) != null) {
-            dictionaryList.add(line);
-         }
-
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-      return dictionaryList;
    }
 }

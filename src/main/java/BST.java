@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-
-public class BST<T extends Comparable<T>> {
-   Functions functions = new Functions();
+public class BST<T> {
+   SpellChecker SpellChecker = new SpellChecker();
 
    public static class Node<T> {
       T word;
@@ -24,7 +22,7 @@ public class BST<T extends Comparable<T>> {
 
       Node<T> current = root;
       while (true) {
-         int distance = functions.levenshteinDistance(word.toString(), current.word.toString());
+         int distance = SpellChecker.levenshteinDistance(word.toString(), current.word.toString());
          if (distance <= 2) {
             if (current.left == null) {
                current.left = newNode;
@@ -45,15 +43,21 @@ public class BST<T extends Comparable<T>> {
       Node<T> current = root;
 
       while (current != null) {
+         int distance = SpellChecker.levenshteinDistance(word.toString(), current.word.toString());
+
          if (current.word.equals(word)) {
             return current;
-         } else if (functions.levenshteinDistance((String) word, (String) current.word) <= 2) {
+         } else if (distance <= 2) {
             current = current.left;
          } else {
             current = current.right;
          }
       }
       return null;
+   }
+
+   boolean isWordInDictionary(T word) {
+      return search(word) != null;
    }
 
    boolean delete(T word) {
@@ -63,7 +67,7 @@ public class BST<T extends Comparable<T>> {
       // find target's Node
       while (current != null && !current.word.equals(word)) {
          parent = current;
-         if (functions.levenshteinDistance((String) word, (String) current.word) <= 2) {
+         if (SpellChecker.levenshteinDistance((String) word, (String) current.word) <= 2) {
             current = current.left;
          } else {
             current = current.right;
@@ -131,32 +135,19 @@ public class BST<T extends Comparable<T>> {
       }
    }
 
-   ArrayList<String> getClosestWords(String word, int k) {
-      word = word.toLowerCase();
-      ArrayList<String> closestWords = new ArrayList<>();
-
-      int count = 0;
-
+   Node<T> findMin() {
       Node<T> current = root;
-
-      while (current != null && count < k) {
-         if (functions.levenshteinDistance(word, (String) current.word) <= 2) {
-            if (word.equals(current.word))
-               continue;
-            closestWords.add((String) current.word);
-            count++;
-            current = current.left;
-         } else {
-            current = current.right;
-         }
+      while (current.left != null) {
+         current = current.left;
       }
-
-      return closestWords;
-
+      return current;
    }
 
-   String getClosestWord(String word) {
-      return getClosestWords(word, 1).get(0);
+   Node<T> findMax() {
+      Node<T> current = root;
+      while (current.right != null) {
+         current = current.right;
+      }
+      return current;
    }
-
 }

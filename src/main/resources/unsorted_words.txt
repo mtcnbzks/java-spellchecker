@@ -998,8 +998,7 @@ provokasyon
 versiyon
 politik
 teknoloji
-mtc
-mtcn
-mtcnb
-mtcnbz
-mtcnbzk
+mehmet
+mehmetc
+mehmetca
+mehmetcan

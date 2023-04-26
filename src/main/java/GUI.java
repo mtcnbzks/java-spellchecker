@@ -1,6 +1,12 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+
+import java.awt.event.MouseEvent;
+
 public class GUI extends javax.swing.JFrame {
    SpellChecker SpellChecker = new SpellChecker();
 
@@ -18,20 +24,38 @@ public class GUI extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated
    // <editor-fold defaultstate="collapsed" desc="Generated
    // <editor-fold defaultstate="collapsed" desc="Generated
+   // <editor-fold defaultstate="collapsed" desc="Generated
+   // <editor-fold defaultstate="collapsed" desc="Generated
+   // <editor-fold defaultstate="collapsed" desc="Generated
+   // <editor-fold defaultstate="collapsed" desc="Generated
+   // <editor-fold defaultstate="collapsed" desc="Generated
+   // <editor-fold defaultstate="collapsed" desc="Generated
+   // <editor-fold defaultstate="collapsed" desc="Generated
+   // <editor-fold defaultstate="collapsed" desc="Generated
+   // <editor-fold defaultstate="collapsed" desc="Generated
+   // <editor-fold defaultstate="collapsed" desc="Generated
    // Code">//GEN-BEGIN:initComponents
    private void initComponents() {
 
+      inputPopupMenu = new javax.swing.JPopupMenu();
+      wordSuggestionMenuItem = new javax.swing.JMenuItem();
       kGradientPanel = new keeptoo.KGradientPanel();
       jScrollPane1 = new javax.swing.JScrollPane();
       inputTextArea = new javax.swing.JTextArea();
       jScrollPane2 = new javax.swing.JScrollPane();
       outputTextArea = new javax.swing.JTextArea();
       opaquePanel = new javax.swing.JPanel();
-      getSuggestionsButton = new javax.swing.JButton();
       showButton = new javax.swing.JButton();
       cleanButton = new javax.swing.JButton();
       jLabel1 = new javax.swing.JLabel();
       kSpinner = new javax.swing.JSpinner();
+
+      wordSuggestionMenuItem.setText("jMenuItem1");
+      wordSuggestionMenuItem.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            wordSuggestionMenuItemActionPerformed(evt);
+         }
+      });
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
       setTitle("SPELL CHECK");
@@ -47,6 +71,15 @@ public class GUI extends javax.swing.JFrame {
       inputTextArea.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
       inputTextArea.setLineWrap(true);
       inputTextArea.setRows(5);
+      inputTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
+         public void mousePressed(java.awt.event.MouseEvent evt) {
+            inputTextAreaMousePressed(evt);
+         }
+
+         public void mouseReleased(java.awt.event.MouseEvent evt) {
+            inputTextAreaMouseReleased(evt);
+         }
+      });
       jScrollPane1.setViewportView(inputTextArea);
 
       outputTextArea.setEditable(false);
@@ -60,30 +93,14 @@ public class GUI extends javax.swing.JFrame {
 
       opaquePanel.setOpaque(false);
 
-      getSuggestionsButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-      getSuggestionsButton.setText("SUGG");
-      getSuggestionsButton.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            getSuggestionsButtonActionPerformed(evt);
-         }
-      });
-
       javax.swing.GroupLayout opaquePanelLayout = new javax.swing.GroupLayout(opaquePanel);
       opaquePanel.setLayout(opaquePanelLayout);
       opaquePanelLayout.setHorizontalGroup(
             opaquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(opaquePanelLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(getSuggestionsButton,
-                              javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                        .addGap(59, 59, 59)));
+                  .addGap(0, 189, Short.MAX_VALUE));
       opaquePanelLayout.setVerticalGroup(
             opaquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(opaquePanelLayout.createSequentialGroup()
-                        .addComponent(getSuggestionsButton,
-                              javax.swing.GroupLayout.PREFERRED_SIZE, 32,
-                              javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 151, Short.MAX_VALUE)));
+                  .addGap(0, 183, Short.MAX_VALUE));
 
       showButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
       showButton.setText("SHOW");
@@ -112,60 +129,36 @@ public class GUI extends javax.swing.JFrame {
             kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                   .addGroup(kGradientPanelLayout.createSequentialGroup()
                         .addGroup(kGradientPanelLayout
-                              .createParallelGroup(
-                                    javax.swing.GroupLayout.Alignment.LEADING,
-                                    false)
+                              .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                               .addGroup(kGradientPanelLayout.createSequentialGroup()
                                     .addGap(25, 25, 25)
-                                    .addComponent(jScrollPane1,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE,
-                                          550,
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550,
                                           javax.swing.GroupLayout.PREFERRED_SIZE))
-                              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                    kGradientPanelLayout
-                                          .createSequentialGroup()
-                                          .addGroup(kGradientPanelLayout
-                                                .createParallelGroup(
-                                                      javax.swing.GroupLayout.Alignment.TRAILING)
+                              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanelLayout
+                                    .createSequentialGroup()
+                                    .addGroup(kGradientPanelLayout
+                                          .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                          .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(opaquePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                      javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                      javax.swing.GroupLayout.PREFERRED_SIZE))
+                                          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanelLayout
+                                                .createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel1)
+                                                .addGap(18, 18, 18)
                                                 .addGroup(kGradientPanelLayout
-                                                      .createSequentialGroup()
-                                                      .addContainerGap()
-                                                      .addComponent(
-                                                            opaquePanel,
-                                                            javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                            javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                            javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                      kGradientPanelLayout
-                                                            .createSequentialGroup()
-                                                            .addGap(18, 18,
-                                                                  18)
-                                                            .addComponent(
-                                                                  jLabel1)
-                                                            .addGap(18, 18,
-                                                                  18)
-                                                            .addGroup(kGradientPanelLayout
-                                                                  .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                        false)
-                                                                  .addComponent(
-                                                                        kSpinner)
-                                                                  .addComponent(
-                                                                        cleanButton,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        80,
-                                                                        Short.MAX_VALUE)
-                                                                  .addComponent(
-                                                                        showButton,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE))))
-                                          .addPreferredGap(
-                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                          .addComponent(jScrollPane2,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                380,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                      .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                                            false)
+                                                      .addComponent(kSpinner)
+                                                      .addComponent(cleanButton, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                            80, Short.MAX_VALUE)
+                                                      .addComponent(showButton, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380,
+                                          javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(25, Short.MAX_VALUE)));
       kGradientPanelLayout.setVerticalGroup(
             kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,42 +167,27 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241,
                               javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(kGradientPanelLayout
-                              .createParallelGroup(
-                                    javax.swing.GroupLayout.Alignment.TRAILING,
-                                    false)
+                              .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                               .addGroup(kGradientPanelLayout.createSequentialGroup()
                                     .addGap(25, 25, 25)
-                                    .addComponent(jScrollPane2,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE,
-                                          342,
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342,
                                           javax.swing.GroupLayout.PREFERRED_SIZE))
                               .addGroup(kGradientPanelLayout.createSequentialGroup()
                                     .addGap(48, 48, 48)
-                                    .addComponent(showButton,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE,
-                                          32,
+                                    .addComponent(showButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32,
                                           javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(
-                                          javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(cleanButton,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE,
-                                          32,
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(cleanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32,
                                           javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addGroup(kGradientPanelLayout
-                                          .createParallelGroup(
-                                                javax.swing.GroupLayout.Alignment.BASELINE)
-                                          .addComponent(kSpinner,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                32,
+                                          .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                          .addComponent(kSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 32,
                                                 javax.swing.GroupLayout.PREFERRED_SIZE)
                                           .addComponent(jLabel1))
-                                    .addPreferredGap(
-                                          javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                          javax.swing.GroupLayout.DEFAULT_SIZE,
-                                          Short.MAX_VALUE)
-                                    .addComponent(opaquePanel,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                          javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(opaquePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
                                           javax.swing.GroupLayout.DEFAULT_SIZE,
                                           javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(25, Short.MAX_VALUE)));
@@ -228,12 +206,53 @@ public class GUI extends javax.swing.JFrame {
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
-   private void getSuggestionsButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_getSuggestionsButtonActionPerformed
-      String selectedWord = inputTextArea.getSelectedText();
-      int k = (int) kSpinner.getValue();
+   private void inputTextAreaMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMousePressed
+      if (evt.isPopupTrigger()) {
+         String selectedWord = inputTextArea.getSelectedText().trim();
+         int k = (int) kSpinner.getValue();
 
-      BST<String> suggestions = getSuggestions(selectedWord, k);
-   }// GEN-LAST:event_getSuggestionsButtonActionPerformed
+         BST<String> suggestions = getSuggestions(selectedWord, k);
+         StringBuilder sb = suggestions.inOrderTraversalToString();
+
+         inputPopupMenu.removeAll();
+         for (String word : sb.toString().split(" ")) {
+            wordSuggestionMenuItem = new JMenuItem(word);
+            inputPopupMenu.add(wordSuggestionMenuItem);
+            wordSuggestionMenuItem.addActionListener(new java.awt.event.ActionListener() {
+               public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  wordSuggestionMenuItemActionPerformed(evt);
+               }
+            });
+         }
+
+         showPopUpMenu(evt, inputPopupMenu);
+      }
+   }// GEN-LAST:event_inputTextAreaMousePressed
+
+   private void inputTextAreaMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMouseReleased
+
+      if (evt.isPopupTrigger()) {
+         showPopUpMenu(evt, inputPopupMenu);
+      }
+   }// GEN-LAST:event_inputTextAreaMouseReleased
+
+   private void wordSuggestionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_wordSuggestionMenuItemActionPerformed
+      String suggestedWord = evt.getActionCommand();
+      inputTextArea.replaceSelection(suggestedWord);
+   }// GEN-LAST:event_wordSuggestionMenuItemActionPerformed
+
+   // GEN-LAST:event_denemeActionPerformed
+
+   void showPopUpMenu(MouseEvent evt, JPopupMenu popupMenu) {
+      popupMenu.show(this, evt.getX(), evt.getY() + 60);
+   }
+
+   // private void inputTextAreaMouseReleased(java.awt.event.MouseEvent evt) {//
+   // GEN-FIRST:event_inputTextAreaMouseReleased
+   // if (evt.isPopupTrigger()) {
+   // showPopUpMenu(evt, inputPopupMenu);
+   // }
+   // }// GEN-LAST:event_inputTextAreaMouseReleased
 
    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
       outputTextArea.setText("");
@@ -275,7 +294,7 @@ public class GUI extends javax.swing.JFrame {
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton cleanButton;
-   private javax.swing.JButton getSuggestionsButton;
+   private javax.swing.JPopupMenu inputPopupMenu;
    private javax.swing.JTextArea inputTextArea;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JScrollPane jScrollPane1;
@@ -285,5 +304,6 @@ public class GUI extends javax.swing.JFrame {
    private javax.swing.JPanel opaquePanel;
    private javax.swing.JTextArea outputTextArea;
    private javax.swing.JButton showButton;
+   private javax.swing.JMenuItem wordSuggestionMenuItem;
    // End of variables declaration//GEN-END:variables
 }

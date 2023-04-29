@@ -3,6 +3,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
 import java.awt.Image;
@@ -288,8 +289,15 @@ public class GUI extends javax.swing.JFrame {
          }
 
          BST<String> closestWords = SpellChecker.getClosestWords(word);
+         String closestWord = "";
 
-         String closestWord = SpellChecker.getClosestWord(closestWords, word);
+         try {
+            closestWords = SpellChecker.getClosestWords(word);
+            closestWord = SpellChecker.getClosestWord(closestWords, word);
+         } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(rootPane, "There is no word like " + word + " in the dictionary.");
+         }
+
          if (closestWord.equals(word)) {
             outputTextArea.append(word + " ");
             continue;

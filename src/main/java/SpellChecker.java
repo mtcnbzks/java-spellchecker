@@ -6,7 +6,7 @@ public class SpellChecker {
    public static void main(String[] args) {
       SpellChecker sp = new SpellChecker();
 
-      String selectedText = "kalem";
+      String selectedText = "kale";
       int k = 10;
 
       BST<String> closestWords = sp.getClosestWords(selectedText, k);
@@ -15,7 +15,7 @@ public class SpellChecker {
    }
 
    public BST<String> getClosestWords(String word) {
-      String filePath = "src/main/resources/tr_dict.txt";
+      String filePath = getAbsolutePath("tr_dict.txt");
 
       BST<String> closestWordsBST = new BST<>();
       try (BufferedReader bufferedReader = new BufferedReader(
@@ -34,7 +34,7 @@ public class SpellChecker {
    }
 
    public BST<String> getClosestWords(String word, int k) {
-      String filePath = "src/main/resources/tr_dict.txt";
+      String filePath = getAbsolutePath("tr_dict.txt");
 
       int count = 0;
       BST<String> closestWordsBST = new BST<>();
@@ -58,6 +58,10 @@ public class SpellChecker {
 
    String getClosestWord(BST<String> closestWordsBST, String word) {
       return closestWordsBST.root.word;
+   }
+
+   private String getAbsolutePath(String fileName) {
+      return getClass().getClassLoader().getResource(fileName).getPath();
    }
 
    public int levenshteinDistance(String word1, String word2) {

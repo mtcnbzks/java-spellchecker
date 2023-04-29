@@ -6,15 +6,16 @@ public class SpellChecker {
    public static void main(String[] args) {
       SpellChecker sp = new SpellChecker();
 
-      String selectedText = "kale";
-      int k = 10;
+      String selectedText = "kalem";
+      int k = 5;
 
       BST<String> closestWords = sp.getClosestWords(selectedText, k);
+      System.out.println(closestWords.search(selectedText));
       closestWords.inOrderTraversal();
 
    }
 
-   public BST<String> getClosestWords(String word) {
+   public BST<String> getClosestWords(String word) throws NullPointerException {
       String filePath = getAbsolutePath("tr_dict.txt");
 
       BST<String> closestWordsBST = new BST<>();
@@ -22,8 +23,11 @@ public class SpellChecker {
             new FileReader(filePath))) {
          String line;
          while ((line = bufferedReader.readLine()) != null) {
+            if (Character.isUpperCase(word.charAt(0))) {
+               line = Character.toUpperCase(line.charAt(0)) + line.substring(1);
+            }
             int distance = levenshteinDistance(word, line);
-            if (distance == 1)
+            if (distance <= 1)
                closestWordsBST.insert(line.trim());
          }
 
@@ -42,8 +46,13 @@ public class SpellChecker {
             new FileReader(filePath))) {
          String line;
          while ((line = bufferedReader.readLine()) != null && count < k) {
+
+            if (Character.isUpperCase(word.charAt(0))) {
+               line = Character.toUpperCase(line.charAt(0)) + line.substring(1);
+            }
+
             int distance = levenshteinDistance(word, line);
-            if (distance == 1) {
+            if (distance < 2) {
                closestWordsBST.insert(line.trim());
                count++;
             }
@@ -57,6 +66,10 @@ public class SpellChecker {
    }
 
    String getClosestWord(BST<String> closestWordsBST, String word) {
+      if (closestWordsBST.search(word) != null) {
+         return word;
+      }
+
       return closestWordsBST.root.word;
    }
 

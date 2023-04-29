@@ -50,177 +50,158 @@ public class GUI extends javax.swing.JFrame {
    // <editor-fold defaultstate="collapsed" desc="Generated
    // <editor-fold defaultstate="collapsed" desc="Generated
    // <editor-fold defaultstate="collapsed" desc="Generated
-   // Code">//GEN-BEGIN:initComponents
-   private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-      inputPopupMenu = new javax.swing.JPopupMenu();
-      wordSuggestionMenuItem = new javax.swing.JMenuItem();
-      kGradientPanel = new keeptoo.KGradientPanel();
-      jScrollPane1 = new javax.swing.JScrollPane();
-      inputTextArea = new javax.swing.JTextArea();
-      jScrollPane2 = new javax.swing.JScrollPane();
-      outputTextArea = new javax.swing.JTextArea();
-      opaquePanel = new javax.swing.JPanel();
-      showButton = new javax.swing.JButton();
-      cleanButton = new javax.swing.JButton();
-      jLabel1 = new javax.swing.JLabel();
-      kSpinner = new javax.swing.JSpinner();
+        inputPopupMenu = new javax.swing.JPopupMenu();
+        wordSuggestionMenuItem = new javax.swing.JMenuItem();
+        kGradientPanel = new keeptoo.KGradientPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        inputTextArea = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        outputTextArea = new javax.swing.JTextArea();
+        opaquePanel = new javax.swing.JPanel();
+        showButton = new javax.swing.JButton();
+        cleanButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        kSpinner = new javax.swing.JSpinner();
 
-      wordSuggestionMenuItem.setText("jMenuItem1");
-      wordSuggestionMenuItem.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            wordSuggestionMenuItemActionPerformed(evt);
-         }
-      });
+        wordSuggestionMenuItem.setText("jMenuItem1");
+        wordSuggestionMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wordSuggestionMenuItemActionPerformed(evt);
+            }
+        });
 
-      setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-      setTitle("Spell Checker");
-      setBackground(new java.awt.Color(255, 255, 255));
-      setForeground(new java.awt.Color(51, 51, 51));
-      setName("workFrame"); // NOI18N
-      setResizable(false);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Spell Checker");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setForeground(new java.awt.Color(51, 51, 51));
+        setName("workFrame"); // NOI18N
+        setResizable(false);
 
-      kGradientPanel.setkEndColor(new java.awt.Color(221, 255, 255));
-      kGradientPanel.setkStartColor(new java.awt.Color(176, 196, 222));
+        kGradientPanel.setkEndColor(new java.awt.Color(221, 255, 255));
+        kGradientPanel.setkStartColor(new java.awt.Color(176, 196, 222));
 
-      inputTextArea.setColumns(20);
-      inputTextArea.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
-      inputTextArea.setLineWrap(true);
-      inputTextArea.setRows(5);
-      inputTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
-         public void mousePressed(java.awt.event.MouseEvent evt) {
-            inputTextAreaMousePressed(evt);
-         }
+        inputTextArea.setColumns(20);
+        inputTextArea.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
+        inputTextArea.setLineWrap(true);
+        inputTextArea.setRows(5);
+        inputTextArea.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                inputTextAreaMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                inputTextAreaMouseReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(inputTextArea);
 
-         public void mouseReleased(java.awt.event.MouseEvent evt) {
-            inputTextAreaMouseReleased(evt);
-         }
-      });
-      jScrollPane1.setViewportView(inputTextArea);
+        outputTextArea.setEditable(false);
+        outputTextArea.setBackground(new java.awt.Color(255, 255, 255));
+        outputTextArea.setColumns(20);
+        outputTextArea.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
+        outputTextArea.setForeground(new java.awt.Color(0, 102, 51));
+        outputTextArea.setLineWrap(true);
+        outputTextArea.setRows(5);
+        jScrollPane2.setViewportView(outputTextArea);
 
-      outputTextArea.setEditable(false);
-      outputTextArea.setBackground(new java.awt.Color(255, 255, 255));
-      outputTextArea.setColumns(20);
-      outputTextArea.setFont(new java.awt.Font("Segoe UI Semibold", 0, 15)); // NOI18N
-      outputTextArea.setForeground(new java.awt.Color(0, 102, 51));
-      outputTextArea.setLineWrap(true);
-      outputTextArea.setRows(5);
-      jScrollPane2.setViewportView(outputTextArea);
+        opaquePanel.setOpaque(false);
 
-      opaquePanel.setOpaque(false);
-
-      javax.swing.GroupLayout opaquePanelLayout = new javax.swing.GroupLayout(opaquePanel);
-      opaquePanel.setLayout(opaquePanelLayout);
-      opaquePanelLayout.setHorizontalGroup(
+        javax.swing.GroupLayout opaquePanelLayout = new javax.swing.GroupLayout(opaquePanel);
+        opaquePanel.setLayout(opaquePanelLayout);
+        opaquePanelLayout.setHorizontalGroup(
             opaquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGap(0, 189, Short.MAX_VALUE));
-      opaquePanelLayout.setVerticalGroup(
+            .addGap(0, 189, Short.MAX_VALUE)
+        );
+        opaquePanelLayout.setVerticalGroup(
             opaquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGap(0, 183, Short.MAX_VALUE));
+            .addGap(0, 183, Short.MAX_VALUE)
+        );
 
-      showButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-      showButton.setText("SHOW");
-      showButton.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            showButtonActionPerformed(evt);
-         }
-      });
+        showButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        showButton.setText("CORRECT!");
+        showButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showButtonActionPerformed(evt);
+            }
+        });
 
-      cleanButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-      cleanButton.setText("CLEAN");
-      cleanButton.addActionListener(new java.awt.event.ActionListener() {
-         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            cleanButtonActionPerformed(evt);
-         }
-      });
+        cleanButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        cleanButton.setText("CLEAN");
+        cleanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanButtonActionPerformed(evt);
+            }
+        });
 
-      jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-      jLabel1.setText("K:");
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel1.setText("K:");
 
-      kSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
+        kSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
 
-      javax.swing.GroupLayout kGradientPanelLayout = new javax.swing.GroupLayout(kGradientPanel);
-      kGradientPanel.setLayout(kGradientPanelLayout);
-      kGradientPanelLayout.setHorizontalGroup(
+        javax.swing.GroupLayout kGradientPanelLayout = new javax.swing.GroupLayout(kGradientPanel);
+        kGradientPanel.setLayout(kGradientPanelLayout);
+        kGradientPanelLayout.setHorizontalGroup(
             kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(kGradientPanelLayout.createSequentialGroup()
-                        .addGroup(kGradientPanelLayout
-                              .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                              .addGroup(kGradientPanelLayout.createSequentialGroup()
-                                    .addGap(25, 25, 25)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE))
-                              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanelLayout
-                                    .createSequentialGroup()
-                                    .addGroup(kGradientPanelLayout
-                                          .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                          .addGroup(kGradientPanelLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(opaquePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                      javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                      javax.swing.GroupLayout.PREFERRED_SIZE))
-                                          .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanelLayout
-                                                .createSequentialGroup()
-                                                .addGap(30, 30, 30)
-                                                .addComponent(jLabel1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(kGradientPanelLayout
-                                                      .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                            false)
-                                                      .addComponent(cleanButton, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                            80, Short.MAX_VALUE)
-                                                      .addComponent(showButton, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                            javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                      .addComponent(kSpinner))))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(25, Short.MAX_VALUE)));
-      kGradientPanelLayout.setVerticalGroup(
-            kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addGroup(kGradientPanelLayout.createSequentialGroup()
+            .addGroup(kGradientPanelLayout.createSequentialGroup()
+                .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(kGradientPanelLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241,
-                              javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(kGradientPanelLayout
-                              .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                              .addGroup(kGradientPanelLayout.createSequentialGroup()
-                                    .addGap(25, 25, 25)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE))
-                              .addGroup(kGradientPanelLayout.createSequentialGroup()
-                                    .addGap(48, 48, 48)
-                                    .addComponent(showButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(cleanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(kGradientPanelLayout
-                                          .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                          .addComponent(kSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 32,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                          .addComponent(jLabel1))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                          javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(opaquePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                          javax.swing.GroupLayout.DEFAULT_SIZE,
-                                          javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(25, Short.MAX_VALUE)));
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanelLayout.createSequentialGroup()
+                        .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(kGradientPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(opaquePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanelLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cleanButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(showButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(kSpinner))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        kGradientPanelLayout.setVerticalGroup(
+            kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(kGradientPanelLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanelLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(showButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cleanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(kGradientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(kSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(opaquePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
 
-      javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-      getContentPane().setLayout(layout);
-      layout.setHorizontalGroup(
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(kGradientPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-      layout.setVerticalGroup(
+            .addComponent(kGradientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(kGradientPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            .addComponent(kGradientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
-      pack();
-   }// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
 
    private void inputTextAreaMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMousePressed
       if (evt.isPopupTrigger()) {
@@ -327,18 +308,18 @@ public class GUI extends javax.swing.JFrame {
       });
    }
 
-   // Variables declaration - do not modify//GEN-BEGIN:variables
-   private javax.swing.JButton cleanButton;
-   private javax.swing.JPopupMenu inputPopupMenu;
-   private javax.swing.JTextArea inputTextArea;
-   private javax.swing.JLabel jLabel1;
-   private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JScrollPane jScrollPane2;
-   private keeptoo.KGradientPanel kGradientPanel;
-   private javax.swing.JSpinner kSpinner;
-   private javax.swing.JPanel opaquePanel;
-   private javax.swing.JTextArea outputTextArea;
-   private javax.swing.JButton showButton;
-   private javax.swing.JMenuItem wordSuggestionMenuItem;
-   // End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cleanButton;
+    private javax.swing.JPopupMenu inputPopupMenu;
+    private javax.swing.JTextArea inputTextArea;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private keeptoo.KGradientPanel kGradientPanel;
+    private javax.swing.JSpinner kSpinner;
+    private javax.swing.JPanel opaquePanel;
+    private javax.swing.JTextArea outputTextArea;
+    private javax.swing.JButton showButton;
+    private javax.swing.JMenuItem wordSuggestionMenuItem;
+    // End of variables declaration//GEN-END:variables
 }

@@ -88,7 +88,7 @@
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="cleanButton" pref="80" max="32767" attributes="0"/>
+                                      <Component id="cleanButton" max="32767" attributes="0"/>
                                       <Component id="showButton" max="32767" attributes="0"/>
                                       <Component id="kSpinner" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -204,7 +204,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="SHOW"/>
+            <Property name="text" type="java.lang.String" value="CORRECT!"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showButtonActionPerformed"/>

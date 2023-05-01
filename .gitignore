@@ -2,4 +2,5 @@ target
 .vscode
 .idea
 .DS_Store
-src/main/java/test.java
+out
+src/main/java/META-INF

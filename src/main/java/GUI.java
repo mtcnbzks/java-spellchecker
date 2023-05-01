@@ -18,6 +18,9 @@ import java.net.URL;
 public class GUI extends javax.swing.JFrame {
    SpellChecker SpellChecker = new SpellChecker();
 
+   Highlighter highlighter;
+   HighlightPainter painter;
+
    BST<String> getSuggestions(String selectedWord, int k) {
       return SpellChecker.getClosestWords(selectedWord, k);
    }
@@ -30,10 +33,12 @@ public class GUI extends javax.swing.JFrame {
       ImageIcon icon = new ImageIcon(iconURL);
       setIconImage(icon.getImage());
 
-      // Image image = Toolkit.getDefaultToolkit().getImage(iconURL); // macOS icon
-      // setup. doesnt compile when platform is Windows.
+      // macOS dock icon setup. doesnt compile when platform is Windows.
+      // Image image = Toolkit.getDefaultToolkit().getImage(iconURL);
       // Taskbar.getTaskbar().setIconImage(image);
 
+      highlighter = outputTextArea.getHighlighter();
+      painter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);
    }
 
    @SuppressWarnings("unchecked")
@@ -271,9 +276,6 @@ public class GUI extends javax.swing.JFrame {
    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
       outputTextArea.setText("");
 
-      Highlighter highlighter = outputTextArea.getHighlighter();
-      HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);
-
       String inputText = inputTextArea.getText().trim();
 
       Pattern pattern = Pattern.compile("[a-zA-ZığüşöçİĞÜŞÖÇ'.,?!:;]+");
@@ -315,11 +317,9 @@ public class GUI extends javax.swing.JFrame {
          }
          outputTextArea.append(closestWord + " ");
 
-         System.out.println(closestWord);
          int startIndex = outputTextArea.getText().indexOf(closestWord);
          int endIndex = startIndex + closestWord.length();
 
-         System.out.println("startIndex: " + startIndex + " endIndex: " + endIndex);
          try {
             highlighter.addHighlight(startIndex, endIndex, painter);
          } catch (BadLocationException e) {

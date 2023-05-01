@@ -1,33 +1,13 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class SpellChecker {
-   public static void main(String[] args) {
-      SpellChecker sp = new SpellChecker();
-
-      String selectedText = "kalem";
-      int k = 5;
-
-      BST<String> closestWords = sp.getClosestWords(selectedText, k);
-
-      System.out.println(sp.getAbsolutePath("favicon.png"));
-
-      String text = "kalem kutu karton makas";
-
-      int startIndex = text.indexOf("kutu");
-      int endIndex = startIndex + "kutu".length();
-
-      System.out.println(startIndex + ", " + endIndex);
-
-   }
+   private final String fileName = "/tr_dict.txt";
 
    public BST<String> getClosestWords(String word) throws NullPointerException {
-      String filePath = getAbsolutePath("tr_dict.txt");
-
       BST<String> closestWordsBST = new BST<>();
-      try (BufferedReader bufferedReader = new BufferedReader(
-            new FileReader(filePath))) {
+      try (InputStream inputStream = getClass().getResourceAsStream(fileName);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+
          String line;
          while ((line = bufferedReader.readLine()) != null) {
             if (Character.isUpperCase(word.charAt(0))) {
@@ -45,15 +25,14 @@ public class SpellChecker {
    }
 
    public BST<String> getClosestWords(String word, int k) {
-      String filePath = getAbsolutePath("tr_dict.txt");
-
-      int count = 0;
       BST<String> closestWordsBST = new BST<>();
-      try (BufferedReader bufferedReader = new BufferedReader(
-            new FileReader(filePath))) {
+      int count = 0;
+
+      try (InputStream inputStream = getClass().getResourceAsStream(fileName);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+
          String line;
          while ((line = bufferedReader.readLine()) != null && count < k) {
-
             if (Character.isUpperCase(word.charAt(0))) {
                line = Character.toUpperCase(line.charAt(0)) + line.substring(1);
             }
@@ -63,7 +42,6 @@ public class SpellChecker {
                closestWordsBST.insert(line.trim());
                count++;
             }
-
          }
 
       } catch (IOException e) {
@@ -78,10 +56,6 @@ public class SpellChecker {
       }
 
       return closestWordsBST.root.word;
-   }
-
-   private String getAbsolutePath(String fileName) {
-      return getClass().getClassLoader().getResource(fileName).getPath();
    }
 
    public int levenshteinDistance(String word1, String word2) {

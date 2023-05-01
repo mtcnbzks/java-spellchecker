@@ -10,8 +10,15 @@ public class SpellChecker {
       int k = 5;
 
       BST<String> closestWords = sp.getClosestWords(selectedText, k);
-      System.out.println(closestWords.search(selectedText));
-      closestWords.inOrderTraversal();
+
+      System.out.println(sp.getAbsolutePath("favicon.png"));
+
+      String text = "kalem kutu karton makas";
+
+      int startIndex = text.indexOf("kutu");
+      int endIndex = startIndex + "kutu".length();
+
+      System.out.println(startIndex + ", " + endIndex);
 
    }
 

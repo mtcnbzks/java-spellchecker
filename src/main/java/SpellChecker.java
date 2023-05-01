@@ -1,61 +1,74 @@
 import java.io.*;
 
 public class SpellChecker {
-   private final String fileName = "/tr_dict.txt";
+   private final String fileName = "/unsorted_words.txt";
 
-   public BST<String> getClosestWords(String word) throws NullPointerException {
-      BST<String> closestWordsBST = new BST<>();
-      try (InputStream inputStream = getClass().getResourceAsStream(fileName);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+   public static void main(String[] args) {
+      SpellChecker sp = new SpellChecker();
+
+      BST<String> wordsBST = sp.getWords();
+
+      BST<String> closestWordsBST = sp.getClosestWords(wordsBST, "karl");
+      BST<String> KClosestWords = sp.getKClosestWords(closestWordsBST, 3);
+      KClosestWords.inOrderTraversal();
+
+   }
+
+   public BST<String> getWords() {
+      BST<String> wordsBST = new BST<>();
+      try (BufferedReader bufferedReader = new BufferedReader(
+            new InputStreamReader(getClass().getResourceAsStream(fileName)))) {
 
          String line;
          while ((line = bufferedReader.readLine()) != null) {
-            if (Character.isUpperCase(word.charAt(0))) {
-               line = Character.toUpperCase(line.charAt(0)) + line.substring(1);
-            }
-            int distance = levenshteinDistance(word, line);
-            if (distance <= 1)
-               closestWordsBST.insert(line.trim());
+            wordsBST.insert(line.trim());
          }
 
       } catch (IOException e) {
          e.printStackTrace();
       }
-      return closestWordsBST;
+      return wordsBST;
    }
 
-   public BST<String> getClosestWords(String word, int k) {
-      BST<String> closestWordsBST = new BST<>();
+   public BST<String> getClosestWords(BST<String> wordsBST, String word) {
+      return inorderInsert(wordsBST, word);
+   }
+
+   public String getClosestWord(BST<String> closestWords, String word) {
+      return closestWords.isWordInDictionary(word) ? word : closestWords.root.word;
+   }
+
+   public BST<String> getKClosestWords(BST<String> closestWords, int k) {
+      BST<String> kClosestWords = new BST<>();
+
+      StringBuilder sb = closestWords.inOrderTraversalToString();
+
       int count = 0;
-
-      try (InputStream inputStream = getClass().getResourceAsStream(fileName);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
-
-         String line;
-         while ((line = bufferedReader.readLine()) != null && count < k) {
-            if (Character.isUpperCase(word.charAt(0))) {
-               line = Character.toUpperCase(line.charAt(0)) + line.substring(1);
-            }
-
-            int distance = levenshteinDistance(word, line);
-            if (distance < 2) {
-               closestWordsBST.insert(line.trim());
-               count++;
-            }
+      for (String word : sb.toString().split(" ")) {
+         if (count < k) {
+            kClosestWords.insert(word);
+            count++;
          }
-
-      } catch (IOException e) {
-         e.printStackTrace();
       }
-      return closestWordsBST;
+
+      return kClosestWords;
+
    }
 
-   String getClosestWord(BST<String> closestWordsBST, String word) {
-      if (closestWordsBST.search(word) != null) {
-         return word;
-      }
+   private BST<String> inorderInsert(BST<String> wordsBST, String word) {
+      BST<String> closestWords = new BST<>();
+      inorderInsert(wordsBST.root, closestWords, word);
+      return closestWords;
+   }
 
-      return closestWordsBST.root.word;
+   private void inorderInsert(BST.Node<String> node, BST<String> closestWordsBST, String word) {
+      if (node != null) {
+         inorderInsert(node.left, closestWordsBST, word);
+         if (levenshteinDistance(word.toString(), node.word.toString()) <= 2) {
+            closestWordsBST.insert(node.word);
+         }
+         inorderInsert(node.right, closestWordsBST, word);
+      }
    }
 
    public int levenshteinDistance(String word1, String word2) {

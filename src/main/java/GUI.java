@@ -17,16 +17,19 @@ import java.net.URL;
 
 public class GUI extends javax.swing.JFrame {
    SpellChecker SpellChecker = new SpellChecker();
+   BST<String> wordsBST;
 
    Highlighter highlighter;
    HighlightPainter painter;
 
-   BST<String> getSuggestions(String selectedWord, int k) {
-      return SpellChecker.getClosestWords(selectedWord, k);
+   BST<String> getSuggestions(BST<String> closestWords, int k) {
+      return SpellChecker.getKClosestWords(closestWords, k);
    }
 
    public GUI() {
       initComponents();
+
+      wordsBST = SpellChecker.getWords();
 
       URL iconURL = getClass().getResource("favicon.png");
       assert iconURL != null;
@@ -244,6 +247,21 @@ public class GUI extends javax.swing.JFrame {
 
    private void inputTextAreaMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMousePressed
       if (evt.isPopupTrigger()) {
+         String selectedWord = inputTextArea.getSelectedText().trim();
+         int k = (int) kSpinner.getValue();
+
+         BST<String> closestWords = SpellChecker.getClosestWords(wordsBST, selectedWord);
+
+         BST<String> suggestions = getSuggestions(closestWords, k);
+         StringBuilder suggestionsStringBuilder = suggestions.inOrderTraversalToString();
+
+         inputPopupMenu.removeAll();
+         for (String word : suggestionsStringBuilder.toString().split(" ")) {
+            wordSuggestionMenuItem = new JMenuItem(word);
+            inputPopupMenu.add(wordSuggestionMenuItem);
+
+            wordSuggestionMenuItem.addActionListener(this::wordSuggestionMenuItemActionPerformed);
+         }
          showPopUpMenu(evt, inputPopupMenu);
       }
    }// GEN-LAST:event_inputTextAreaMousePressed
@@ -254,7 +272,9 @@ public class GUI extends javax.swing.JFrame {
          String selectedWord = inputTextArea.getSelectedText().trim();
          int k = (int) kSpinner.getValue();
 
-         BST<String> suggestions = getSuggestions(selectedWord, k);
+         BST<String> closestWords = SpellChecker.getClosestWords(wordsBST, selectedWord);
+
+         BST<String> suggestions = getSuggestions(closestWords, k);
          StringBuilder suggestionsStringBuilder = suggestions.inOrderTraversalToString();
 
          inputPopupMenu.removeAll();
@@ -300,7 +320,7 @@ public class GUI extends javax.swing.JFrame {
          String closestWord = "";
 
          try {
-            closestWords = SpellChecker.getClosestWords(word);
+            closestWords = SpellChecker.getClosestWords(wordsBST, word);
             closestWord = SpellChecker.getClosestWord(closestWords, word);
          } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(rootPane, "There is no word like " + word + " in the dictionary.");

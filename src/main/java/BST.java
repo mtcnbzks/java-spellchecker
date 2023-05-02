@@ -22,6 +22,9 @@ public class BST<T> {
 
       Node<T> current = root;
       while (true) {
+         // if the distance between the word and the current node's word is less than or
+         // equal to 2 insert the word into the left subtree of the current node
+         // otherwise insert the word into the right subtree of the current node
          int distance = SpellChecker.levenshteinDistance(word.toString(), current.word.toString());
          if (distance <= 2) {
             if (current.left == null) {
@@ -136,12 +139,17 @@ public class BST<T> {
    }
 
    StringBuilder inOrderTraversalToString() {
+      // inorder traversal of the tree and add all elements to the StringBuilder
+
+      // StringBuilder is used to avoid the overhead of creating a new String object
+      // each time a new String is concatenated
       StringBuilder sb = new StringBuilder();
       inOrderTraversalToString(root, sb);
       return sb;
    }
 
    private void inOrderTraversalToString(Node<T> node, StringBuilder sb) {
+      // inorder traversal of the tree and add all elements to the StringBuilder
       if (node != null) {
          inOrderTraversalToString(node.left, sb);
          sb.append(node.word).append(" ");

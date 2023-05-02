@@ -19,25 +19,25 @@ public class GUI extends javax.swing.JFrame {
    SpellChecker SpellChecker = new SpellChecker();
    BST<String> wordsBST;
 
-   Highlighter highlighter;
-   HighlightPainter painter;
+   Highlighter highlighter; // used to highlight the misspelled words
+   HighlightPainter painter; // used to paint the highlighted words
 
    public GUI() {
       initComponents();
 
       wordsBST = SpellChecker.getWords();
 
-      URL iconURL = getClass().getResource("favicon.png");
-      assert iconURL != null;
-      ImageIcon icon = new ImageIcon(iconURL);
-      setIconImage(icon.getImage());
+      URL iconURL = getClass().getResource("favicon.png"); // get the icon from the resources folder
+      assert iconURL != null; // if the icon is null, throw an error
+      ImageIcon icon = new ImageIcon(iconURL); // create an ImageIcon from the iconURL
+      setIconImage(icon.getImage()); // set the icon of the JFrame
 
       // macOS dock icon setup. doesnt compile when platform is Windows.
       // Image image = Toolkit.getDefaultToolkit().getImage(iconURL);
       // Taskbar.getTaskbar().setIconImage(image);
 
-      highlighter = outputTextArea.getHighlighter();
-      painter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);
+      highlighter = outputTextArea.getHighlighter(); // initialize the highlighter
+      painter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED); // initialize the painter
    }
 
    @SuppressWarnings("unchecked")
@@ -233,34 +233,49 @@ public class GUI extends javax.swing.JFrame {
    }// </editor-fold>//GEN-END:initComponents
 
    private void wordSuggestionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_wordSuggestionMenuItemActionPerformed
+      // when a word suggestion is clicked, replace the selected word with the
+      // suggestion
       String suggestedWord = evt.getActionCommand();
       inputTextArea.replaceSelection(suggestedWord);
    }
 
+   // show popup menu
    void showPopUpMenu(MouseEvent evt, JPopupMenu popupMenu) {
       popupMenu.show(this, evt.getX(), evt.getY() + 60);
    }
 
+   // IMPORTANT:
+   // This section has been written twice because it is important to include it for
+   // both macOS and Windows platforms. If this section is not included in the
+   // MousePressed and MouseReleased methods, it may not work properly on one of
+   // the platforms.
    private void inputTextAreaMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMousePressed
       if (evt.isPopupTrigger()) {
+         // if the selected text is null, then do not show the popup menu
          if (inputTextArea.getSelectedText() == null) {
             JOptionPane.showMessageDialog(rootPane, "Please select a word first.");
             return;
          }
 
+         // get the selected word and the value of k
          String selectedWord = inputTextArea.getSelectedText().trim();
          int k = (int) kSpinner.getValue();
 
+         // get the closest words to the selected word
          BST<String> closestWords = SpellChecker.getClosestWords(wordsBST, selectedWord);
          BST<String> suggestions = SpellChecker.getKClosestWords(closestWords, k);
 
+         // create a string builder to store the suggestions
          StringBuilder suggestionsStringBuilder = suggestions.inOrderTraversalToString();
 
+         // create a popup menu and add the suggestions to it as menu items
          inputPopupMenu.removeAll();
          for (String word : suggestionsStringBuilder.toString().split(" ")) {
             wordSuggestionMenuItem = new JMenuItem(word);
             inputPopupMenu.add(wordSuggestionMenuItem);
 
+            // add an action listener to the menu item so that when it is clicked, the word
+            // is replaced with the suggestion
             wordSuggestionMenuItem.addActionListener(this::wordSuggestionMenuItemActionPerformed);
          }
 
@@ -268,6 +283,7 @@ public class GUI extends javax.swing.JFrame {
       }
    }// GEN-LAST:event_inputTextAreaMousePressed
 
+   // same as above. PLEASE READ THE ABOVE COMMENT FIRST
    private void inputTextAreaMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMouseReleased
       if (evt.isPopupTrigger()) {
          if (inputTextArea.getSelectedText() == null) {
@@ -299,6 +315,7 @@ public class GUI extends javax.swing.JFrame {
 
    // GEN-LAST:event_denemeActionPerformed
 
+   // highlight the misspelled words in the output text area
    private void highlightWord(JTextArea textArea, String word) {
       int startIndex = textArea.getText().indexOf(word);
       int endIndex = startIndex + word.length();
@@ -312,19 +329,21 @@ public class GUI extends javax.swing.JFrame {
    }
 
    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
-      // TODO: FIX!
-
+      // clear the output text area
       outputTextArea.setText("");
 
       String inputText = inputTextArea.getText().trim();
 
+      // regex pattern to match words and punctuation
       Pattern pattern = Pattern.compile("[a-zA-ZığüşöçİĞÜŞÖÇ'.,?!:;]+");
       Matcher matcher = pattern.matcher(inputText);
 
+      // iterate over the words in the input text
       while (matcher.find()) {
          String word = matcher.group().trim();
          boolean isContainsPunc = false;
 
+         // if the word contains punctuation
          char lastChar = word.charAt(word.length() - 1);
          if (lastChar == '.' || lastChar == ',' || lastChar == '?' || lastChar == '!'
                || lastChar == ':'
@@ -332,10 +351,12 @@ public class GUI extends javax.swing.JFrame {
             isContainsPunc = true;
          }
 
+         // remove punctuation from word
          if (isContainsPunc) {
             word = word.substring(0, word.length() - 1).trim();
          }
 
+         // get the closest words and the word that is closest to the (target) word
          BST<String> closestWordsBST;
          String closestWord = "";
          try {
@@ -346,19 +367,23 @@ public class GUI extends javax.swing.JFrame {
             return;
          }
 
+         // check if the word is in the dictionary
          boolean isWordInDictionary = wordsBST.isWordInDictionary(word.toLowerCase());
          if (!isWordInDictionary) {
 
+            // if the word is not in the dictionary, append the closest word to the output
             if (isContainsPunc) {
                outputTextArea.append(closestWord + lastChar + " ");
             } else {
                outputTextArea.append(closestWord + " ");
             }
 
+            // highlight the closest word
             highlightWord(outputTextArea, closestWord);
          } else { // if word already in dictionary
+            // append the word to the output with proper punctuation
             if (isContainsPunc) {
-               outputTextArea.append(closestWord + lastChar);
+               outputTextArea.append(closestWord + lastChar + " ");
             } else {
                outputTextArea.append(closestWord + " ");
             }

@@ -3,17 +3,6 @@ import java.util.Objects;
 
 public class SpellChecker {
 
-   public static void main(String[] args) {
-      SpellChecker sp = new SpellChecker();
-
-      BST<String> wordsBST = sp.getWords();
-
-      BST<String> closestWordsBST = sp.getClosestWords(wordsBST, "karl");
-      BST<String> KClosestWords = sp.getKClosestWords(closestWordsBST, 3);
-      KClosestWords.inOrderTraversal();
-
-   }
-
    public BST<String> getWords() {
       BST<String> wordsBST = new BST<>();
 
@@ -47,6 +36,9 @@ public class SpellChecker {
 
       int count = 0;
       for (String word : sb.toString().split(" ")) {
+         if (Character.isUpperCase(word.charAt(0))) {
+            word = Character.toUpperCase(word.charAt(0)) + word.substring(1);
+         }
          if (count < k) {
             kClosestWords.insert(word);
             count++;
@@ -74,7 +66,7 @@ public class SpellChecker {
          if (levenshteinDistance(word, node.word) <= 2) {
             closestWordsBST.insert(node.word);
          }
-         
+
          inorderInsert(node.right, closestWordsBST, word);
       }
    }

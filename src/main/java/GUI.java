@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-
+import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
@@ -21,10 +21,6 @@ public class GUI extends javax.swing.JFrame {
 
    Highlighter highlighter;
    HighlightPainter painter;
-
-   BST<String> getSuggestions(BST<String> closestWords, int k) {
-      return SpellChecker.getKClosestWords(closestWords, k);
-   }
 
    public GUI() {
       initComponents();
@@ -247,12 +243,17 @@ public class GUI extends javax.swing.JFrame {
 
    private void inputTextAreaMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMousePressed
       if (evt.isPopupTrigger()) {
+         if (inputTextArea.getSelectedText() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Please select a word first.");
+            return;
+         }
+
          String selectedWord = inputTextArea.getSelectedText().trim();
          int k = (int) kSpinner.getValue();
 
          BST<String> closestWords = SpellChecker.getClosestWords(wordsBST, selectedWord);
+         BST<String> suggestions = SpellChecker.getKClosestWords(closestWords, k);
 
-         BST<String> suggestions = getSuggestions(closestWords, k);
          StringBuilder suggestionsStringBuilder = suggestions.inOrderTraversalToString();
 
          inputPopupMenu.removeAll();
@@ -262,19 +263,24 @@ public class GUI extends javax.swing.JFrame {
 
             wordSuggestionMenuItem.addActionListener(this::wordSuggestionMenuItemActionPerformed);
          }
+
          showPopUpMenu(evt, inputPopupMenu);
       }
    }// GEN-LAST:event_inputTextAreaMousePressed
 
    private void inputTextAreaMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMouseReleased
-
       if (evt.isPopupTrigger()) {
+         if (inputTextArea.getSelectedText() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Please select a word first.");
+            return;
+         }
+
          String selectedWord = inputTextArea.getSelectedText().trim();
          int k = (int) kSpinner.getValue();
 
          BST<String> closestWords = SpellChecker.getClosestWords(wordsBST, selectedWord);
 
-         BST<String> suggestions = getSuggestions(closestWords, k);
+         BST<String> suggestions = SpellChecker.getKClosestWords(closestWords, k);
          StringBuilder suggestionsStringBuilder = suggestions.inOrderTraversalToString();
 
          inputPopupMenu.removeAll();
@@ -284,8 +290,8 @@ public class GUI extends javax.swing.JFrame {
 
             wordSuggestionMenuItem.addActionListener(this::wordSuggestionMenuItemActionPerformed);
          }
-         showPopUpMenu(evt, inputPopupMenu);
 
+         showPopUpMenu(evt, inputPopupMenu);
       }
    }// GEN-LAST:event_inputTextAreaMouseReleased
 
@@ -293,7 +299,21 @@ public class GUI extends javax.swing.JFrame {
 
    // GEN-LAST:event_denemeActionPerformed
 
+   private void highlightWord(JTextArea textArea, String word) {
+      int startIndex = textArea.getText().indexOf(word);
+      int endIndex = startIndex + word.length();
+
+      try {
+         highlighter.addHighlight(startIndex, endIndex, painter);
+      } catch (BadLocationException e) {
+         e.printStackTrace();
+      }
+
+   }
+
    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
+      // TODO: FIX!
+
       outputTextArea.setText("");
 
       String inputText = inputTextArea.getText().trim();
@@ -301,11 +321,11 @@ public class GUI extends javax.swing.JFrame {
       Pattern pattern = Pattern.compile("[a-zA-ZığüşöçİĞÜŞÖÇ'.,?!:;]+");
       Matcher matcher = pattern.matcher(inputText);
 
-      boolean isContainsPunc = false;
       while (matcher.find()) {
-         String word = matcher.group();
-         char lastChar = word.charAt(word.length() - 1);
+         String word = matcher.group().trim();
+         boolean isContainsPunc = false;
 
+         char lastChar = word.charAt(word.length() - 1);
          if (lastChar == '.' || lastChar == ',' || lastChar == '?' || lastChar == '!'
                || lastChar == ':'
                || lastChar == ';') {
@@ -313,37 +333,35 @@ public class GUI extends javax.swing.JFrame {
          }
 
          if (isContainsPunc) {
-            word = word.substring(0, word.length() - 1);
+            word = word.substring(0, word.length() - 1).trim();
          }
 
-         BST<String> closestWords;
+         BST<String> closestWordsBST;
          String closestWord = "";
-
          try {
-            closestWords = SpellChecker.getClosestWords(wordsBST, word);
-            closestWord = SpellChecker.getClosestWord(closestWords, word);
+            closestWordsBST = SpellChecker.getClosestWords(wordsBST, word);
+            closestWord = SpellChecker.getClosestWord(closestWordsBST, word).trim();
          } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(rootPane, "There is no word like " + word + " in the dictionary.");
+            JOptionPane.showMessageDialog(rootPane, "There is no word like " + word + "in the dictionary.");
+            return;
          }
 
-         if (isContainsPunc) {
-            closestWord += lastChar;
-            isContainsPunc = false;
-         }
+         boolean isWordInDictionary = wordsBST.isWordInDictionary(word.toLowerCase());
+         if (!isWordInDictionary) {
 
-         if (closestWord.equals(word)) {
-            outputTextArea.append(word + " ");
-            continue;
-         }
-         outputTextArea.append(closestWord + " ");
+            if (isContainsPunc) {
+               outputTextArea.append(closestWord + lastChar + " ");
+            } else {
+               outputTextArea.append(closestWord + " ");
+            }
 
-         int startIndex = outputTextArea.getText().indexOf(closestWord);
-         int endIndex = startIndex + closestWord.length();
-
-         try {
-            highlighter.addHighlight(startIndex, endIndex, painter);
-         } catch (BadLocationException e) {
-            e.printStackTrace();
+            highlightWord(outputTextArea, closestWord);
+         } else { // if word already in dictionary
+            if (isContainsPunc) {
+               outputTextArea.append(closestWord + lastChar);
+            } else {
+               outputTextArea.append(closestWord + " ");
+            }
          }
 
       }

@@ -1,7 +1,7 @@
 import java.io.*;
+import java.util.Objects;
 
 public class SpellChecker {
-   private final String fileName = "/unsorted_words.txt";
 
    public static void main(String[] args) {
       SpellChecker sp = new SpellChecker();
@@ -16,8 +16,10 @@ public class SpellChecker {
 
    public BST<String> getWords() {
       BST<String> wordsBST = new BST<>();
+
+      String fileName = "/unsorted_words.txt";
       try (BufferedReader bufferedReader = new BufferedReader(
-            new InputStreamReader(getClass().getResourceAsStream(fileName)))) {
+            new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream(fileName))))) {
 
          String line;
          while ((line = bufferedReader.readLine()) != null) {
@@ -64,7 +66,7 @@ public class SpellChecker {
    private void inorderInsert(BST.Node<String> node, BST<String> closestWordsBST, String word) {
       if (node != null) {
          inorderInsert(node.left, closestWordsBST, word);
-         if (levenshteinDistance(word.toString(), node.word.toString()) <= 2) {
+         if (levenshteinDistance(word, node.word) <= 2) {
             closestWordsBST.insert(node.word);
          }
          inorderInsert(node.right, closestWordsBST, word);

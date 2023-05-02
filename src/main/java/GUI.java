@@ -358,17 +358,17 @@ public class GUI extends javax.swing.JFrame {
 
          // get the closest words and the word that is closest to the (target) word
          BST<String> closestWordsBST;
-         String closestWord = "";
+         String closestWord;
          try {
             closestWordsBST = SpellChecker.getClosestWords(wordsBST, word);
             closestWord = SpellChecker.getClosestWord(closestWordsBST, word).trim();
          } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(rootPane, "There is no word like " + word + "in the dictionary.");
-            return;
+            continue;
          }
 
          // check if the word is in the dictionary
-         boolean isWordInDictionary = wordsBST.isWordInDictionary(word.toLowerCase());
+         boolean isWordInDictionary = wordsBST.isWordInDictionary(word.trim());
          if (!isWordInDictionary) {
 
             // if the word is not in the dictionary, append the closest word to the output

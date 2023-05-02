@@ -368,7 +368,7 @@ public class GUI extends javax.swing.JFrame {
          }
 
          // check if the word is in the dictionary
-         boolean isWordInDictionary = wordsBST.isWordInDictionary(word.trim());
+         boolean isWordInDictionary = wordsBST.isWordInDictionary(word.toLowerCase().trim());
          if (!isWordInDictionary) {
 
             // if the word is not in the dictionary, append the closest word to the output

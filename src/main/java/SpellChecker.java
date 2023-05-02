@@ -62,18 +62,18 @@ public class SpellChecker {
    private void inorderInsert(BST.Node<String> node, BST<String> closestWordsBST, String word) {
       // traverse the BST in order and insert the words into the closestWordsBST
       // according to the levenshtein distance
+
+      boolean isFirstCharUppercase = Character.isUpperCase(word.charAt(0));
       if (node != null) {
          inorderInsert(node.left, closestWordsBST, word);
 
-         // if the first letter of the word is uppercase, make the first letter of the
-         // node word uppercase
-         if (Character.isUpperCase(word.charAt(0))) {
-            node.word = Character.toUpperCase(node.word.charAt(0)) + node.word.substring(1);
-         }
-
          // if the levenshtein distance is less than or equal to 2, insert the word into
          if (levenshteinDistance(word, node.word) <= 2) {
-            closestWordsBST.insert(node.word);
+            if (isFirstCharUppercase) {
+               closestWordsBST.insert(node.word.substring(0, 1).toUpperCase() + node.word.substring(1));
+            } else {
+               closestWordsBST.insert(node.word);
+            }
          }
 
          inorderInsert(node.right, closestWordsBST, word);

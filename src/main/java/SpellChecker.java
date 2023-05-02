@@ -66,9 +66,15 @@ public class SpellChecker {
    private void inorderInsert(BST.Node<String> node, BST<String> closestWordsBST, String word) {
       if (node != null) {
          inorderInsert(node.left, closestWordsBST, word);
+
+         if (Character.isUpperCase(word.charAt(0))) {
+            node.word = Character.toUpperCase(node.word.charAt(0)) + node.word.substring(1);
+         }
+
          if (levenshteinDistance(word, node.word) <= 2) {
             closestWordsBST.insert(node.word);
          }
+         
          inorderInsert(node.right, closestWordsBST, word);
       }
    }

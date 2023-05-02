@@ -343,8 +343,7 @@ public class GUI extends javax.swing.JFrame {
          try {
             highlighter.addHighlight(startIndex, endIndex, painter);
          } catch (BadLocationException e) {
-            // e.printStackTrace();
-            System.out.println("HATA!");
+            e.printStackTrace();
          }
 
       }

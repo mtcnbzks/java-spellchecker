@@ -244,47 +244,21 @@ public class GUI extends javax.swing.JFrame {
       popupMenu.show(this, evt.getX(), evt.getY() + 60);
    }
 
-   // IMPORTANT:
-   // This section has been written twice because it is important to include it for
-   // both macOS and Windows platforms. If this section is not included in the
-   // MousePressed and MouseReleased methods, it may not work properly on one of
-   // the platforms.
    private void inputTextAreaMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMousePressed
-      if (evt.isPopupTrigger()) {
-         // if the selected text is null, then do not show the popup menu
-         if (inputTextArea.getSelectedText() == null) {
-            JOptionPane.showMessageDialog(rootPane, "Please select a word first.");
-            return;
-         }
-
-         // get the selected word and the value of k
-         String selectedWord = inputTextArea.getSelectedText().trim();
-         int k = (int) kSpinner.getValue();
-
-         // get the closest words to the selected word
-         BST<String> closestWords = SpellChecker.getClosestWords(wordsBST, selectedWord);
-         BST<String> suggestions = SpellChecker.getKClosestWords(closestWords, k);
-
-         // create a string builder to store the suggestions
-         StringBuilder suggestionsStringBuilder = suggestions.inOrderTraversalToString();
-
-         // create a popup menu and add the suggestions to it as menu items
-         inputPopupMenu.removeAll();
-         for (String word : suggestionsStringBuilder.toString().split(" ")) {
-            wordSuggestionMenuItem = new JMenuItem(word);
-            inputPopupMenu.add(wordSuggestionMenuItem);
-
-            // add an action listener to the menu item so that when it is clicked, the word
-            // is replaced with the suggestion
-            wordSuggestionMenuItem.addActionListener(this::wordSuggestionMenuItemActionPerformed);
-         }
-
-         showPopUpMenu(evt, inputPopupMenu);
-      }
+      showPopUpSuggestions(evt);
    }// GEN-LAST:event_inputTextAreaMousePressed
 
    // same as above. PLEASE READ THE ABOVE COMMENT FIRST
    private void inputTextAreaMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMouseReleased
+      showPopUpSuggestions(evt);
+   }// GEN-LAST:event_inputTextAreaMouseReleased
+
+   // IMPORTANT:
+   // This function used twice because it is important to include it for
+   // both macOS and Windows platforms. If this section is not included in the
+   // MousePressed and MouseReleased methods, it may not work properly on one of
+   // the platforms.
+   private void showPopUpSuggestions(MouseEvent evt) {
       if (evt.isPopupTrigger()) {
          if (inputTextArea.getSelectedText() == null) {
             JOptionPane.showMessageDialog(rootPane, "Please select a word first.");
@@ -309,7 +283,7 @@ public class GUI extends javax.swing.JFrame {
 
          showPopUpMenu(evt, inputPopupMenu);
       }
-   }// GEN-LAST:event_inputTextAreaMouseReleased
+   }
 
    // GEN-LAST:event_wordSuggestionMenuItemActionPerformed
 

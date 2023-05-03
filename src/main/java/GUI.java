@@ -32,10 +32,6 @@ public class GUI extends javax.swing.JFrame {
       ImageIcon icon = new ImageIcon(iconURL); // create an ImageIcon from the iconURL
       setIconImage(icon.getImage()); // set the icon of the JFrame
 
-      // macOS dock icon setup. doesnt compile when platform is Windows.
-      // Image image = Toolkit.getDefaultToolkit().getImage(iconURL);
-      // Taskbar.getTaskbar().setIconImage(image);
-
       highlighter = outputTextArea.getHighlighter(); // initialize the highlighter
       painter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED); // initialize the painter
    }

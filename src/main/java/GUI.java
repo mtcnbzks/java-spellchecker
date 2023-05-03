@@ -337,7 +337,7 @@ public class GUI extends javax.swing.JFrame {
             closestWordsBST = SpellChecker.getClosestWords(wordsBST, word);
             closestWord = SpellChecker.getClosestWord(closestWordsBST, word).trim();
          } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(rootPane, "There is no word like " + word + "in the dictionary.");
+            JOptionPane.showMessageDialog(rootPane, "There is no word like " + word + " in the dictionary.");
             continue;
          }
 

@@ -339,24 +339,17 @@ public class GUI extends javax.swing.JFrame {
 
          // check if the word is in the dictionary
          boolean isWordInDictionary = wordsBST.isWordInDictionary(word.toLowerCase().trim());
+
+         // if the word contains punctuation, append the punctuation to the closest word
+         if (isContainsPunc) {
+            outputTextArea.append(closestWord + lastChar + " ");
+         } else {
+            outputTextArea.append(closestWord + " ");
+         }
          if (!isWordInDictionary) {
-
             // if the word is not in the dictionary, append the closest word to the output
-            if (isContainsPunc) {
-               outputTextArea.append(closestWord + lastChar + " ");
-            } else {
-               outputTextArea.append(closestWord + " ");
-            }
-
             // highlight the closest word
             highlightWord(outputTextArea, closestWord);
-         } else { // if word already in dictionary
-            // append the word to the output with proper punctuation
-            if (isContainsPunc) {
-               outputTextArea.append(closestWord + lastChar + " ");
-            } else {
-               outputTextArea.append(closestWord + " ");
-            }
          }
 
       }

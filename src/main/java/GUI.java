@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-
+import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
@@ -21,10 +21,6 @@ public class GUI extends javax.swing.JFrame {
    Highlighter highlighter;
    HighlightPainter painter;
 
-   BST<String> getSuggestions(String selectedWord, int k) {
-      return SpellChecker.getClosestWords(selectedWord, k);
-   }
-
    public GUI() {
       initComponents();
 
@@ -32,10 +28,6 @@ public class GUI extends javax.swing.JFrame {
       assert iconURL != null;
       ImageIcon icon = new ImageIcon(iconURL);
       setIconImage(icon.getImage());
-
-      // macOS dock icon setup. doesnt compile when platform is Windows.
-      // Image image = Toolkit.getDefaultToolkit().getImage(iconURL);
-      // Taskbar.getTaskbar().setIconImage(image);
 
       highlighter = outputTextArea.getHighlighter();
       painter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);
@@ -233,6 +225,42 @@ public class GUI extends javax.swing.JFrame {
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
+   private void showPopUpSuggestions(MouseEvent evt) {
+      if (evt.isPopupTrigger()) {
+         if (inputTextArea.getSelectedText() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Please select a word first.");
+            return;
+         }
+
+         String selectedWord = inputTextArea.getSelectedText().trim();
+         int k = (int) kSpinner.getValue();
+
+         BST<String> suggestions = SpellChecker.getClosestWords(selectedWord, k);
+         StringBuilder suggestionsStringBuilder = suggestions.inOrderTraversalToString();
+
+         inputPopupMenu.removeAll();
+         for (String word : suggestionsStringBuilder.toString().split(" ")) {
+            wordSuggestionMenuItem = new JMenuItem(word);
+            inputPopupMenu.add(wordSuggestionMenuItem);
+
+            wordSuggestionMenuItem.addActionListener(this::wordSuggestionMenuItemActionPerformed);
+         }
+
+         showPopUpMenu(evt, inputPopupMenu);
+      }
+   }
+
+   private void highlightWord(JTextArea textArea, String word) {
+      int startIndex = textArea.getText().indexOf(word);
+      int endIndex = startIndex + word.length();
+
+      try {
+         highlighter.addHighlight(startIndex, endIndex, painter);
+      } catch (BadLocationException e) {
+         e.printStackTrace();
+      }
+   }
+
    private void wordSuggestionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_wordSuggestionMenuItemActionPerformed
       String suggestedWord = evt.getActionCommand();
       inputTextArea.replaceSelection(suggestedWord);
@@ -244,6 +272,7 @@ public class GUI extends javax.swing.JFrame {
 
    private void inputTextAreaMousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMousePressed
       if (evt.isPopupTrigger()) {
+         showPopUpSuggestions(evt);
          showPopUpMenu(evt, inputPopupMenu);
       }
    }// GEN-LAST:event_inputTextAreaMousePressed
@@ -251,21 +280,8 @@ public class GUI extends javax.swing.JFrame {
    private void inputTextAreaMouseReleased(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_inputTextAreaMouseReleased
 
       if (evt.isPopupTrigger()) {
-         String selectedWord = inputTextArea.getSelectedText().trim();
-         int k = (int) kSpinner.getValue();
-
-         BST<String> suggestions = getSuggestions(selectedWord, k);
-         StringBuilder suggestionsStringBuilder = suggestions.inOrderTraversalToString();
-
-         inputPopupMenu.removeAll();
-         for (String word : suggestionsStringBuilder.toString().split(" ")) {
-            wordSuggestionMenuItem = new JMenuItem(word);
-            inputPopupMenu.add(wordSuggestionMenuItem);
-
-            wordSuggestionMenuItem.addActionListener(this::wordSuggestionMenuItemActionPerformed);
-         }
+         showPopUpSuggestions(evt);
          showPopUpMenu(evt, inputPopupMenu);
-
       }
    }// GEN-LAST:event_inputTextAreaMouseReleased
 
@@ -274,61 +290,60 @@ public class GUI extends javax.swing.JFrame {
    // GEN-LAST:event_denemeActionPerformed
 
    private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_showButtonActionPerformed
+      // clear the output text area
       outputTextArea.setText("");
 
       String inputText = inputTextArea.getText().trim();
 
+      // regex pattern to match words and punctuation
       Pattern pattern = Pattern.compile("[a-zA-ZığüşöçİĞÜŞÖÇ'.,?!:;]+");
       Matcher matcher = pattern.matcher(inputText);
 
-      boolean isContainsPunc = false;
+      // iterate over the words in the input text
       while (matcher.find()) {
-         String word = matcher.group();
-         char lastChar = word.charAt(word.length() - 1);
+         String word = matcher.group().trim();
+         boolean isContainsPunc = false;
 
+         // if the word contains punctuation
+         char lastChar = word.charAt(word.length() - 1);
          if (lastChar == '.' || lastChar == ',' || lastChar == '?' || lastChar == '!'
                || lastChar == ':'
                || lastChar == ';') {
             isContainsPunc = true;
          }
 
+         // remove punctuation from word
          if (isContainsPunc) {
-            word = word.substring(0, word.length() - 1);
+            word = word.substring(0, word.length() - 1).trim();
          }
 
-         BST<String> closestWords;
-         String closestWord = "";
-
+         // get the closest words and the word that is closest to the (target) word
+         BST<String> closestWordsBST;
+         String closestWord;
          try {
-            closestWords = SpellChecker.getClosestWords(word);
-            closestWord = SpellChecker.getClosestWord(closestWords, word);
+            closestWordsBST = SpellChecker.getClosestWords(word);
+            closestWord = SpellChecker.getClosestWord(closestWordsBST, word).trim();
          } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(rootPane, "There is no word like " + word + " in the dictionary.");
-         }
-
-         if (isContainsPunc) {
-            closestWord += lastChar;
-            isContainsPunc = false;
-         }
-
-         if (closestWord.equals(word)) {
-            outputTextArea.append(word + " ");
             continue;
          }
-         outputTextArea.append(closestWord + " ");
 
-         int startIndex = outputTextArea.getText().indexOf(closestWord);
-         int endIndex = startIndex + closestWord.length();
+         // check if the word is in the dictionary
+         boolean isWordInDictionary = closestWordsBST.isWordInDictionary(word.trim());
 
-         try {
-            highlighter.addHighlight(startIndex, endIndex, painter);
-         } catch (BadLocationException e) {
-            // e.printStackTrace();
-            System.out.println("HATA!");
+         // if the word contains punctuation, append the punctuation to the closest word
+         if (isContainsPunc) {
+            outputTextArea.append(closestWord + lastChar + " ");
+         } else {
+            outputTextArea.append(closestWord + " ");
+         }
+         if (!isWordInDictionary) {
+            // if the word is not in the dictionary, append the closest word to the output
+            // highlight the closest word
+            highlightWord(outputTextArea, closestWord);
          }
 
       }
-
    }// GEN-LAST:event_showButtonActionPerformed
 
    private void cleanButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cleanButtonActionPerformed

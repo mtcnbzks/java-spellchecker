@@ -1,12 +1,13 @@
 import java.io.*;
+import java.util.Objects;
 
 public class SpellChecker {
    private final String fileName = "/tr_dict.txt";
 
    public BST<String> getClosestWords(String word) throws NullPointerException {
       BST<String> closestWordsBST = new BST<>();
-      try (InputStream inputStream = getClass().getResourceAsStream(fileName);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+      try (BufferedReader bufferedReader = new BufferedReader(
+            new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream(fileName))))) {
 
          String line;
          while ((line = bufferedReader.readLine()) != null) {
@@ -14,7 +15,7 @@ public class SpellChecker {
                line = Character.toUpperCase(line.charAt(0)) + line.substring(1);
             }
             int distance = levenshteinDistance(word, line);
-            if (distance <= 1)
+            if (distance <= 2)
                closestWordsBST.insert(line.trim());
          }
 
@@ -28,8 +29,8 @@ public class SpellChecker {
       BST<String> closestWordsBST = new BST<>();
       int count = 0;
 
-      try (InputStream inputStream = getClass().getResourceAsStream(fileName);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+      try (BufferedReader bufferedReader = new BufferedReader(
+            new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream(fileName))))) {
 
          String line;
          while ((line = bufferedReader.readLine()) != null && count < k) {
@@ -51,11 +52,8 @@ public class SpellChecker {
    }
 
    String getClosestWord(BST<String> closestWordsBST, String word) {
-      if (closestWordsBST.search(word) != null) {
-         return word;
-      }
+      return (closestWordsBST.search(word) != null) ? word : closestWordsBST.root.word;
 
-      return closestWordsBST.root.word;
    }
 
    public int levenshteinDistance(String word1, String word2) {

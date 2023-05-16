@@ -1,4 +1,4 @@
-# Java Spell Checker
+# Java Spell Checker (Turkish)
 
 ## About
 

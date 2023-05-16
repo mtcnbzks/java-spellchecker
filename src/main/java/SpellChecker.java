@@ -15,7 +15,7 @@ public class SpellChecker {
                line = Character.toUpperCase(line.charAt(0)) + line.substring(1);
             }
             int distance = levenshteinDistance(word, line);
-            if (distance <= 2)
+            if (distance == 1)
                closestWordsBST.insert(line.trim());
          }
 
@@ -25,7 +25,7 @@ public class SpellChecker {
       return closestWordsBST;
    }
 
-   public BST<String> getClosestWords(String word, int k) {
+   public BST<String> getClosestWords(String word, int k) { // get K amount of closest words
       BST<String> closestWordsBST = new BST<>();
       int count = 0;
 

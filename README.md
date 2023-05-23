@@ -1,5 +1,8 @@
 # Java Spell Checker (Turkish)
 
+![](/images/ss00.png)
+![](/images/ss01.png)
+
 ## About
 
 This project is a Java-based spellchecker that utilizes a Binary Search Tree (BST) and the Levenshtein distance

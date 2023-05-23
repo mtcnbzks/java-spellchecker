@@ -15,7 +15,7 @@ public class SpellChecker {
                line = Character.toUpperCase(line.charAt(0)) + line.substring(1);
             }
             int distance = levenshteinDistance(word, line);
-            if (distance == 1)
+            if (distance <= 1)
                closestWordsBST.insert(line.trim());
          }
 

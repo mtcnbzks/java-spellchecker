@@ -1,7 +1,7 @@
 # Java Spell Checker (Turkish)
 
 <div style="display:flex">
-  <img src="images/ss00.png" alt="Alt text" width="300" height="400" style="margin-right:20px;" />
+  <img src="images/ss00.png" alt="Alt text" width="300" height="400" style="margin-right:50px;" />
   <img src="images/ss01.png" alt="Alt text" width="300" height="400" />
 </div>
 

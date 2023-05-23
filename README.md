@@ -1,10 +1,9 @@
 # Java Spell Checker (Turkish)
 
-<!-- ![](/images/ss00.png)
-![](/images/ss01.png) -->
-
-<img src="images/ss00.png" alt="Alt text" width="250" height="300" style="margin-right: 10px;" />
-<img src="images/ss01.png" alt="Alt text" width="250" height="300" />
+<div style="display:flex">
+  <img src="images/ss00.png" alt="Alt text" width="250" height="300" style="margin-right:10px;" />
+  <img src="images/ss01.png" alt="Alt text" width="250" height="300" />
+</div>
 
 ## About
 

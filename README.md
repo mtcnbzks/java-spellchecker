@@ -3,7 +3,7 @@
 <!-- ![](/images/ss00.png)
 ![](/images/ss01.png) -->
 
-<img src="images/ss00.png" alt="Alt text" width="250" height="300" style="margin-right: 25px;" />
+<img src="images/ss00.png" alt="Alt text" width="250" height="300" style="margin-right: 10px;" />
 <img src="images/ss01.png" alt="Alt text" width="250" height="300" />
 
 ## About

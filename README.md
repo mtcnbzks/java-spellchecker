@@ -1,8 +1,8 @@
 # Java Spell Checker (Turkish)
 
 <div style="display:flex">
-  <img src="images/ss00.png" alt="Alt text" width="500" />
-  <img src="images/ss01.png" alt="Alt text" width="500" />
+  <img src="images/ss00.png" alt="Alt text" width="400" />
+  <img src="images/ss01.png" alt="Alt text" width="400" />
 </div>
 
 ## About

@@ -2,12 +2,14 @@ import java.io.*;
 import java.util.Objects;
 
 public class SpellChecker {
-   private final String fileName = "/tr_dict.txt";
+   private BufferedReader getBufferedReader() {
+      return new BufferedReader(new InputStreamReader(Objects.requireNonNull
+         (getClass().getClassLoader().getResourceAsStream("tr_dict.txt"))));
+   }
 
    public BST<String> getClosestWords(String word) throws NullPointerException {
       BST<String> closestWordsBST = new BST<>();
-      try (BufferedReader bufferedReader = new BufferedReader(
-            new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream(fileName))))) {
+      try (BufferedReader bufferedReader = getBufferedReader()) {
 
          String line;
          while ((line = bufferedReader.readLine()) != null) {
@@ -29,8 +31,7 @@ public class SpellChecker {
       BST<String> closestWordsBST = new BST<>();
       int count = 0;
 
-      try (BufferedReader bufferedReader = new BufferedReader(
-            new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream(fileName))))) {
+      try (BufferedReader bufferedReader = getBufferedReader()) {
 
          String line;
          while ((line = bufferedReader.readLine()) != null && count < k) {
